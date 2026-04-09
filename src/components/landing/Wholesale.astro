@@ -1,0 +1,78 @@
+---
+import { store } from "@/data/store";
+import SectionHeader from "@/components/ui/SectionHeader.astro";
+---
+
+<section id="b2b" class="py-12">
+  <div class="relative">
+    <div class="pointer-events-none absolute -inset-x-2 -top-10 h-24 bg-gradient-to-r from-orange-100/60 via-transparent to-orange-100/40 blur-2xl" />
+    <div class="rounded-xl border border-base-100 bg-white p-8 shadow-sm">
+    <div class="grid gap-8 md:grid-cols-3 md:items-start">
+      <div class="md:col-span-2">
+        <SectionHeader
+          kicker="B2B"
+          title="Cung cấp số lượng lớn cho trường học & du lịch Huế"
+          subtitle="Tư vấn danh mục, cấu hình theo ngân sách và mục đích sử dụng. Ưu đãi theo số lượng."
+        />
+        <p class="mt-3 text-sm text-base-700 leading-relaxed">
+          {store.brand} nhận cung cấp xe đạp và phụ tùng số lượng lớn cho các đơn vị <strong>trường học</strong> và
+          <strong> du lịch Huế</strong>. Hỗ trợ tư vấn danh mục, cấu hình theo ngân sách và mục đích sử dụng.
+        </p>
+        <ul class="mt-5 grid gap-3 sm:grid-cols-2 text-sm text-base-700">
+          <li class="rounded-lg border border-base-100 bg-base-50 p-5">
+            <div class="text-base-900 font-semibold">Báo giá theo lô</div>
+            <div class="mt-1 text-base-500">Ưu đãi theo số lượng và yêu cầu cấu hình.</div>
+          </li>
+          <li class="rounded-lg border border-base-100 bg-base-50 p-5">
+            <div class="text-base-900 font-semibold">Tư vấn lựa chọn</div>
+            <div class="mt-1 text-base-500">Gợi ý mẫu phù hợp học sinh/khách du lịch.</div>
+          </li>
+          <li class="rounded-lg border border-base-100 bg-base-50 p-5">
+            <div class="text-base-900 font-semibold">Hậu mãi rõ ràng</div>
+            <div class="mt-1 text-base-500">Bảo hành, bảo dưỡng định kỳ theo thỏa thuận.</div>
+          </li>
+          <li class="rounded-lg border border-base-100 bg-base-50 p-5">
+            <div class="text-base-900 font-semibold">Chuẩn hóa bàn giao</div>
+            <div class="mt-1 text-base-500">Lắp ráp/kiểm tra trước khi giao.</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="rounded-xl border border-base-100 bg-base-50 p-6">
+        <div class="text-xs font-semibold uppercase tracking-widest text-orange-700">Liên hệ báo giá</div>
+        <div class="mt-2 text-base-900 font-semibold">Gửi nhanh 3 thông tin</div>
+        <ol class="mt-3 list-decimal pl-5 text-sm text-base-700 space-y-1">
+          <li>Số lượng dự kiến</li>
+          <li>Nhóm đối tượng (học sinh/du lịch)</li>
+          <li>Ngân sách/xe</li>
+        </ol>
+        <div class="mt-6 flex flex-col gap-3">
+          <a
+            class="px-4 font-semibold h-10 text-xs bg-orange-600 text-white rounded-lg flex items-center justify-center hover:bg-orange-700 duration-200 w-fit"
+            href={`tel:${store.phoneTel}`}
+          >
+            Gọi {store.phoneDisplay}
+          </a>
+          <a
+            class="px-4 font-semibold h-10 text-xs bg-white text-base-900 rounded-lg flex items-center justify-center hover:bg-base-100 duration-200 w-fit"
+            href={store.zaloUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Nhắn Zalo
+          </a>
+          <a
+            class="px-4 font-semibold h-10 text-xs bg-white text-base-900 rounded-lg flex items-center justify-center hover:bg-base-100 duration-200 w-fit"
+            href={store.mapsPlaceUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Xem địa điểm
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+

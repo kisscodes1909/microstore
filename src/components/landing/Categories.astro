@@ -1,0 +1,84 @@
+---
+import SectionHeader from "@/components/ui/SectionHeader.astro";
+import LucideIcon from "@/components/icons/LucideIcon";
+---
+
+<section id="danh-muc" class="py-10">
+  <div class="relative">
+    <div class="pointer-events-none absolute -left-6 -top-8 h-24 w-40 bg-orange-100/70 blur-2xl" />
+
+  <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+    <SectionHeader
+      kicker="Danh mục"
+      title="Những nhóm sản phẩm chủ đạo"
+      subtitle="Tập trung vào nhu cầu phổ biến tại Huế: đi học, thể thao, gia đình và phụ tùng xe đạp điện."
+    />
+    <a
+      class="px-4 font-extrabold h-10 text-xs bg-base-100 text-base-900 rounded-md flex items-center justify-center hover:bg-base-200 duration-200 w-fit"
+      href="/#dia-chi"
+    >
+      Ghé cửa hàng
+    </a>
+  </div>
+
+  <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <article class="rounded-xl border border-base-100 bg-white p-6 shadow-sm">
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <div class="text-xs font-extrabold uppercase tracking-[0.22em] text-orange-700">Phụ tùng</div>
+          <h3 class="mt-2 text-base-900 font-extrabold">Phụ tùng xe đạp điện</h3>
+        </div>
+        <span class="h-10 w-10 rounded-lg bg-orange-50 grid place-items-center text-orange-700">
+          <LucideIcon name="settings" className="w-5 h-5" aria-hidden="true" />
+        </span>
+      </div>
+      <p class="mt-2 text-sm text-base-500 leading-relaxed">
+        Linh kiện, phụ kiện, thay thế và tư vấn phù hợp theo dòng xe.
+      </p>
+    </article>
+    <article class="rounded-xl border border-base-100 bg-white p-6 shadow-sm">
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <div class="text-xs font-extrabold uppercase tracking-[0.22em] text-orange-700">Xe đạp</div>
+          <h3 class="mt-2 text-base-900 font-extrabold">Xe đạp thể thao</h3>
+        </div>
+        <span class="h-10 w-10 rounded-lg bg-orange-50 grid place-items-center text-orange-700">
+          <LucideIcon name="bike" className="w-5 h-5" aria-hidden="true" />
+        </span>
+      </div>
+      <p class="mt-2 text-sm text-base-500 leading-relaxed">
+        Nhu cầu tập luyện, đi nhóm cuối tuần, đường trường và địa hình.
+      </p>
+    </article>
+    <article class="rounded-xl border border-base-100 bg-white p-6 shadow-sm">
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <div class="text-xs font-extrabold uppercase tracking-[0.22em] text-orange-700">Học sinh</div>
+          <h3 class="mt-2 text-base-900 font-extrabold">Xe đạp học sinh</h3>
+        </div>
+        <span class="h-10 w-10 rounded-lg bg-orange-50 grid place-items-center text-orange-700">
+          <LucideIcon name="backpack" className="w-5 h-5" aria-hidden="true" />
+        </span>
+      </div>
+      <p class="mt-2 text-sm text-base-500 leading-relaxed">
+        Bền, dễ sử dụng, tiết kiệm — phù hợp đi học hàng ngày.
+      </p>
+    </article>
+    <article class="rounded-xl border border-base-100 bg-white p-6 shadow-sm">
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <div class="text-xs font-extrabold uppercase tracking-[0.22em] text-orange-700">Trẻ em</div>
+          <h3 class="mt-2 text-base-900 font-extrabold">Xe đạp trẻ em</h3>
+        </div>
+        <span class="h-10 w-10 rounded-lg bg-orange-50 grid place-items-center text-orange-700">
+          <LucideIcon name="userRound" className="w-5 h-5" aria-hidden="true" />
+        </span>
+      </div>
+      <p class="mt-2 text-sm text-base-500 leading-relaxed">
+        Nhiều size, an toàn, phụ kiện đi kèm (tuỳ chọn) cho bé.
+      </p>
+    </article>
+  </div>
+  </div>
+</section>
+

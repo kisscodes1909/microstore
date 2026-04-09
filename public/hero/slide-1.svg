@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1020"/>
+      <stop offset="1" stop-color="#0a2a5a"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#60a5fa" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#38bdf8" stop-opacity="0.10"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1200" cy="260" r="260" fill="url(#glow)"/>
+  <circle cx="420" cy="720" r="320" fill="url(#glow)" opacity="0.7"/>
+  <g fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="26" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M340 650c72-215 260-330 450-330 180 0 370 85 460 315"/>
+    <path d="M510 640l185-245 285 6 140 235"/>
+    <path d="M645 395l-75 245"/>
+    <path d="M860 400l-95 240"/>
+    <circle cx="520" cy="665" r="140"/>
+    <circle cx="1080" cy="665" r="140"/>
+  </g>
+  <g font-family="Sora, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#fff">
+    <text x="90" y="130" font-size="44" opacity="0.92">¢nh hero 1</text>
+    <text x="90" y="180" font-size="22" opacity="0.68">Thay b±ng £nh cía hàng/xe th­t sau</text>
+  </g>
+</svg>
+

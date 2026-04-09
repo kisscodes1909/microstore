@@ -1,0 +1,149 @@
+---
+import { store } from "@/data/store";
+
+type Slide = { src: string; alt: string };
+
+const slides: Slide[] = [
+  { src: "/hero/slide-1.svg", alt: "Quốc Bản - Hero 1" },
+  { src: "/hero/slide-2.svg", alt: "Quốc Bản - Hero 2" },
+  { src: "/hero/slide-3.svg", alt: "Quốc Bản - Hero 3" },
+];
+---
+
+<header class="py-10">
+  <div class="grid gap-10 lg:grid-cols-2 lg:items-start">
+    <div>
+      <p class="text-xs font-semibold text-orange-700 uppercase tracking-widest">{store.tagline}</p>
+      <h1 class="mt-3 text-base-900 font-extrabold text-3xl md:text-5xl tracking-tight">
+        Cửa hàng xe đạp & phụ tùng tại Huế
+      </h1>
+      <p class="mt-3 text-base-500 text-sm leading-relaxed">
+        Phụ tùng xe đạp điện • Xe đạp thể thao • Xe đạp học sinh • Trẻ em. Nhận cung cấp số lượng lớn cho trường học và
+        đơn vị du lịch tại Huế.
+      </p>
+
+      <ul class="mt-5 grid gap-2 text-sm text-base-700">
+        <li class="flex items-start gap-2">
+          <span class="mt-1.5 inline-block h-2 w-2 rounded-full bg-orange-500" aria-hidden="true" />
+          <span>Tư vấn đúng nhu cầu, đúng đối tượng (học sinh, thể thao, trẻ em).</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="mt-1.5 inline-block h-2 w-2 rounded-full bg-orange-500" aria-hidden="true" />
+          <span>Phụ tùng xe đạp điện đa dạng, hỗ trợ thay thế nhanh.</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="mt-1.5 inline-block h-2 w-2 rounded-full bg-orange-500" aria-hidden="true" />
+          <span>Nhận cung cấp số lượng lớn cho trường học và đơn vị du lịch Huế.</span>
+        </li>
+      </ul>
+
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a
+          class="px-4 font-semibold h-10 text-xs bg-orange-600 text-white rounded-lg flex items-center justify-center hover:bg-orange-700 duration-200 w-fit"
+          href={`tel:${store.phoneTel}`}
+        >
+          Gọi {store.phoneDisplay}
+        </a>
+        <a
+          class="px-4 font-semibold h-10 text-xs bg-base-100 text-base-900 rounded-lg flex items-center justify-center hover:bg-base-200 duration-200 w-fit"
+          href={store.zaloUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Nhắn Zalo
+        </a>
+        <a
+          class="px-4 font-semibold h-10 text-xs bg-base-100 text-base-900 rounded-lg flex items-center justify-center hover:bg-base-200 duration-200 w-fit"
+          href="#dia-chi"
+        >
+          Chỉ đường
+        </a>
+      </div>
+    </div>
+
+    <section class="relative" aria-label="Hero slider">
+      <div class="relative overflow-hidden rounded-2xl border border-base-100 bg-white shadow-sm">
+        <div class="relative aspect-12/9">
+          {slides.map((s) => (
+            <div data-hero-slide class="absolute inset-0 opacity-0 transition-opacity duration-300">
+              <img src={s.src} alt={s.alt} class="h-full w-full object-cover object-center" loading="eager" />
+            </div>
+          ))}
+        </div>
+
+        <button
+          type="button"
+          aria-label="Ảnh trước"
+          data-hero-prev
+          class="absolute left-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-lg bg-white/90 hover:bg-white text-base-900 grid place-items-center shadow"
+        >
+          ←
+        </button>
+        <button
+          type="button"
+          aria-label="Ảnh sau"
+          data-hero-next
+          class="absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-lg bg-white/90 hover:bg-white text-base-900 grid place-items-center shadow"
+        >
+          →
+        </button>
+
+        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+          {slides.map((_, idx) => (
+            <button
+              type="button"
+              aria-label={`Chuyển đến ảnh ${idx + 1}`}
+              data-hero-dot={idx}
+              class="h-2.5 w-2.5 rounded-full bg-white/70 hover:bg-white shadow opacity-60"
+            />
+          ))}
+        </div>
+      </div>
+
+      <p class="mt-3 text-xs text-base-500">
+        Gợi ý: thay 3 ảnh trong <code class="font-mono text-[11px]">public/hero/</code> bằng ảnh cửa hàng/xe thật.
+      </p>
+    </section>
+  </div>
+
+  <script is:inline define:vars={{ slidesCount: slides.length }}>
+    const root = document.currentScript?.closest('header');
+    if (!root) return;
+
+    const slides = Array.from(root.querySelectorAll('[data-hero-slide]'));
+    const prevBtn = root.querySelector('[data-hero-prev]');
+    const nextBtn = root.querySelector('[data-hero-next]');
+    const dots = Array.from(root.querySelectorAll('[data-hero-dot]'));
+
+    if (slides.length === 0 || !prevBtn || !nextBtn || dots.length === 0) return;
+
+    let index = 0;
+
+    const setIndex = (next) => {
+      index = ((next % slidesCount) + slidesCount) % slidesCount;
+      slides.forEach((el, i) => {
+        el.style.opacity = i === index ? '1' : '0';
+        el.style.pointerEvents = i === index ? 'auto' : 'none';
+      });
+      dots.forEach((d, i) => {
+        d.style.opacity = i === index ? '1' : '0.55';
+        d.style.transform = i === index ? 'scale(1.12)' : 'scale(1)';
+      });
+    };
+
+    prevBtn.addEventListener('click', () => {
+      setIndex(index - 1);
+    });
+    nextBtn.addEventListener('click', () => {
+      setIndex(index + 1);
+    });
+    dots.forEach((d) =>
+      d.addEventListener('click', () => {
+        setIndex(Number(d.getAttribute('data-hero-dot') || '0'));
+      })
+    );
+
+    setIndex(0);
+  </script>
+</header>
+

@@ -1,0 +1,21 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+import { store } from "@/data/store";
+
+type Props = {
+  title?: string;
+  description?: string;
+};
+
+const { title = store.name, description = store.description } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body class="antialiased">
+    <slot />
+  </body>
+</html>

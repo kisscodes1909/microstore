@@ -1,0 +1,64 @@
+---
+import { store } from "@/data/store";
+import SectionHeader from "@/components/ui/SectionHeader.astro";
+---
+
+<section class="py-10">
+  <div class="relative">
+    <div class="pointer-events-none absolute -right-6 -top-6 h-28 w-28 rounded-full bg-orange-100/70 blur-2xl" />
+
+  <SectionHeader
+    kicker="Giới thiệu"
+    title="Tập trung vào trải nghiệm sử dụng: bền, an toàn, dễ dùng"
+    subtitle="Quốc Bản ưu tiên tư vấn rõ ràng, lựa chọn đúng nhu cầu và hỗ trợ sau bán. Đặc biệt phù hợp nhóm khách mua cho học sinh, gia đình và đơn vị mua theo lô."
+  />
+
+  <div class="mt-6 grid gap-4 lg:grid-cols-3">
+    <div class="rounded-xl border border-base-100 bg-white p-6 shadow-sm lg:col-span-2">
+      <div class="grid gap-4 md:grid-cols-2">
+        <div class="rounded-xl border border-base-100 bg-base-50 p-5">
+          <div class="text-base-900 font-extrabold">Tư vấn đúng nhu cầu</div>
+          <p class="mt-2 text-sm text-base-500 leading-relaxed">Gợi ý dòng xe, size và phụ kiện phù hợp đối tượng.</p>
+        </div>
+        <div class="rounded-xl border border-base-100 bg-base-50 p-5">
+          <div class="text-base-900 font-extrabold">Lắp ráp & kiểm tra</div>
+          <p class="mt-2 text-sm text-base-500 leading-relaxed">Chỉnh phanh/đề và kiểm tra an toàn trước khi giao.</p>
+        </div>
+        <div class="rounded-xl border border-base-100 bg-base-50 p-5">
+          <div class="text-base-900 font-extrabold">Bảo dưỡng định kỳ</div>
+          <p class="mt-2 text-sm text-base-500 leading-relaxed">Hướng dẫn chăm xe để chạy bền và êm.</p>
+        </div>
+        <div class="rounded-xl border border-base-100 bg-base-50 p-5">
+          <div class="text-base-900 font-extrabold">Phụ tùng đa dạng</div>
+          <p class="mt-2 text-sm text-base-500 leading-relaxed">Phục vụ nhanh nhu cầu thay thế/sửa chữa.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rounded-xl border border-base-100 bg-white p-6 shadow-sm">
+      <div class="text-xs font-extrabold uppercase tracking-[0.22em] text-orange-700">Cam kết</div>
+      <div class="mt-2 text-base-900 font-extrabold">{store.tagline}</div>
+      <p class="mt-3 text-sm text-base-500 leading-relaxed">
+        Bạn cứ gửi nhu cầu + ngân sách, tụi mình gợi ý 2–3 phương án để bạn chọn nhanh.
+      </p>
+      <div class="mt-5 flex flex-col gap-2">
+        <a
+          class="px-4 font-extrabold h-10 text-xs bg-orange-600 text-white rounded-md flex items-center justify-center hover:bg-orange-700 duration-200"
+          href={`tel:${store.phoneTel}`}
+        >
+          Gọi {store.phoneDisplay}
+        </a>
+        <a
+          class="px-4 font-extrabold h-10 text-xs bg-base-100 text-base-900 rounded-md flex items-center justify-center hover:bg-base-200 duration-200"
+          href={store.zaloUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Nhắn Zalo
+        </a>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+

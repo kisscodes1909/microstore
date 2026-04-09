@@ -1,11 +1,25 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/landing/Hero.astro";
-import Products from "../components/landing/Products.astro";
-
+import NewDesignLayout from "@/layouts/NewDesignLayout.astro";
+import Hero from "@/components/new-design/Hero.astro";
+import TrustBar from "@/components/new-design/TrustBar.astro";
+import CategoryShowcase from "@/components/new-design/CategoryShowcase.astro";
+import PromoBanner from "@/components/new-design/PromoBanner.astro";
+import About from "@/components/new-design/About.astro";
+import Services from "@/components/new-design/Services.astro";
+import Brands from "@/components/new-design/Brands.astro";
+import Testimonials from "@/components/new-design/Testimonials.astro";
+import ContactMap from "@/components/new-design/ContactMap.astro";
 ---
 
-<BaseLayout>
+<NewDesignLayout>
   <Hero />
-  <Products />
-</BaseLayout>
+  <TrustBar />
+  <About />
+
+{/* <CategoryShowcase />*/}
+{/* <PromoBanner />*/}
+{/*  <Services />*/}
+{/* <Brands /> */}
+  <Testimonials />
+  <ContactMap />
+</NewDesignLayout>

@@ -1,0 +1,58 @@
+---
+import { store } from "@/data/store";
+import logoUrl from "@/images/logo.svg?url";
+---
+
+<header class="sticky top-0 z-50 border-b border-base-100 bg-white">
+  <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="hidden sm:flex items-center justify-between py-2 text-xs text-base-500">
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
+        <span>
+          Hotline: <a class="font-medium text-base-900 hover:underline" href={`tel:${store.phoneTel}`}>{store.phoneDisplay}</a>
+        </span>
+        <span class="hidden sm:inline">•</span>
+        <span>Giờ mở cửa: {store.hours}</span>
+      </div>
+      <a class="hidden sm:inline hover:underline" href={store.mapsPlaceUrl} target="_blank" rel="noreferrer">
+        Xem địa điểm
+      </a>
+    </div>
+
+    <div class="flex items-center justify-between gap-4 py-3">
+      <a class="flex items-center" href="/">
+        <img
+          src={logoUrl}
+          alt={store.brand}
+          width="250"
+          height="150"
+          class="h-[60px] w-auto max-w-[min(320px,72vw)] object-contain object-left"
+        />
+      </a>
+
+      <nav class="hidden md:flex items-center gap-7 text-sm text-base-700">
+        <a class="hover:text-base-900 duration-200 font-semibold" href="/#dia-chi">Cửa hàng</a>
+        <a class="hover:text-base-900 duration-200 font-semibold" href="/#danh-muc">Danh mục</a>
+        <a class="hover:text-base-900 duration-200 font-semibold" href="/#b2b">B2B</a>
+        <a class="hover:text-base-900 duration-200 font-semibold" href="/#danh-gia">Đánh giá</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a
+          class="hidden sm:flex px-4 font-semibold h-10 text-xs bg-base-100 text-base-900 rounded-md items-center justify-center hover:bg-base-200 duration-200"
+          href={store.zaloUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Zalo
+        </a>
+        <a
+          class="px-4 font-semibold h-10 text-xs bg-orange-600 text-white rounded-md flex items-center justify-center hover:bg-orange-700 duration-200"
+          href={`tel:${store.phoneTel}`}
+        >
+          Gọi ngay
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+

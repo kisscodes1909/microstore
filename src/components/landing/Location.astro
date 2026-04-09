@@ -1,0 +1,67 @@
+---
+import { store } from "@/data/store";
+import SectionHeader from "@/components/ui/SectionHeader.astro";
+---
+
+<section id="dia-chi" class="py-12">
+  <div class="relative">
+    <div class="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-orange-100/60 blur-2xl" />
+
+  <SectionHeader
+    kicker="Cửa hàng"
+    title="Ghé trực tiếp để xem xe và tư vấn nhanh"
+    subtitle="Bấm mở Google Maps để chỉ đường. Hotline & giờ mở cửa hiển thị rõ ở header/footer."
+  />
+
+  <div class="mt-6 grid gap-6 md:grid-cols-2 items-stretch">
+    <div class="rounded-3xl border border-base-100 bg-base-50 p-8">
+      <h2 class="text-base-900 text-2xl font-medium">Địa chỉ & giờ mở cửa</h2>
+      <div class="mt-4 space-y-2 text-sm text-base-700">
+        <div>
+          <span class="font-medium text-base-900">Địa chỉ:</span> {store.address}
+        </div>
+        <div>
+          <span class="font-medium text-base-900">Giờ mở cửa:</span> {store.hours}
+        </div>
+        <div>
+          <span class="font-medium text-base-900">Hotline:</span>
+          <a class="underline hover:text-base-900" href={`tel:${store.phoneTel}`}>{store.phoneDisplay}</a>
+        </div>
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a
+          class="px-4 font-extrabold h-10 text-xs bg-orange-600 text-white rounded-md flex items-center justify-center hover:bg-orange-700 duration-200 w-fit"
+          href={store.mapsPlaceUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Mở Google Maps
+        </a>
+        <a
+          class="px-4 font-extrabold h-10 text-xs bg-white text-base-900 rounded-md flex items-center justify-center hover:bg-base-100 duration-200 w-fit"
+          href={store.zaloUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Nhắn Zalo
+        </a>
+      </div>
+      <p class="mt-4 text-xs text-base-500">
+        Thay link bản đồ bằng link “Chia sẻ địa điểm” từ Google Maps để hiện đúng vị trí cửa hàng.
+      </p>
+    </div>
+
+    <div class="rounded-xl border border-base-100 overflow-hidden bg-white shadow-sm">
+      <iframe
+        title="Bản đồ"
+        class="h-[22rem] w-full"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src={store.mapsUrl}
+      />
+    </div>
+  </div>
+  </div>
+</section>
+

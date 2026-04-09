@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070a12"/>
+      <stop offset="1" stop-color="#123a6f"/>
+    </linearGradient>
+    <linearGradient id="stripe" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#93c5fd" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <path d="M-100 700C300 520 520 520 860 640s520 180 900 20v260H-100Z" fill="url(#stripe)"/>
+  <path d="M-100 520C240 360 520 380 820 520s520 220 900 40" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="22" stroke-linecap="round"/>
+  <g fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M420 600h500"/>
+    <path d="M560 600l130-210h220l140 210"/>
+    <circle cx="520" cy="660" r="120"/>
+    <circle cx="1080" cy="660" r="120"/>
+    <path d="M740 390l-55 210"/>
+  </g>
+  <g font-family="Sora, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#fff">
+    <text x="90" y="130" font-size="44" opacity="0.92">¢nh hero 2</text>
+    <text x="90" y="180" font-size="22" opacity="0.68">Phå tùng " Xe thÃ thao " HÍc sinh " Tr» em</text>
+  </g>
+</svg>
+

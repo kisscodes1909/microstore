@@ -1,0 +1,28 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+import { store } from "@/data/store";
+import NewDesignNavbar from "@/components/new-design/NewDesignNavbar.astro";
+import NewDesignFooter from "@/components/new-design/NewDesignFooter.astro";
+
+type Props = {
+  title?: string;
+  description?: string;
+};
+
+const { title = store.name, description = store.description } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body class="bg-white text-gray-900 antialiased">
+    <NewDesignNavbar />
+    <main class="pt-[92px] md:pt-[128px]">
+      <slot />
+    </main>
+    <NewDesignFooter />
+  </body>
+</html>
+

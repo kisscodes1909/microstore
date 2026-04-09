@@ -1,0 +1,28 @@
+---
+type Props = {
+  kicker?: string;
+  title: string;
+  subtitle?: string;
+  align?: "left" | "center";
+};
+
+const { kicker, title, subtitle, align = "left" } = Astro.props;
+const isCenter = align === "center";
+---
+
+<div class={isCenter ? "text-center" : ""}>
+  {kicker ? (
+    <div class="text-xs font-extrabold uppercase tracking-[0.22em] text-orange-700">
+      {kicker}
+    </div>
+  ) : null}
+  <h2 class={"mt-2 text-2xl md:text-3xl font-extrabold tracking-tight text-base-900 " + (isCenter ? "mx-auto" : "")}>
+    {title}
+  </h2>
+  {subtitle ? (
+    <p class={"mt-2 text-sm md:text-base text-base-500 leading-relaxed " + (isCenter ? "mx-auto max-w-2xl" : "max-w-3xl")}>
+      {subtitle}
+    </p>
+  ) : null}
+</div>
+

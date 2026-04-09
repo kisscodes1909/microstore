@@ -1,0 +1,100 @@
+---
+import LucideIcon from "@/components/icons/LucideIcon";
+
+const testimonials = [
+  {
+    name: "Nguyễn Văn An",
+    role: "Cyclist nghiệp dư",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=NVA&backgroundColor=b6e3f4",
+    rating: 5,
+    product: "Trek Marlin 7",
+    comment:
+      "Mua xe tại đây, nhân viên tư vấn rất nhiệt tình và chuyên nghiệp. Xe chạy êm, bảo dưỡng nhanh. Sẽ giới thiệu cho bạn bè!",
+    verified: true,
+  },
+  {
+    name: "Trần Thị Bình",
+    role: "Khách hàng thân thiết",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=TTB&backgroundColor=ffd5dc",
+    rating: 5,
+    product: "Giant Defy Advanced",
+    comment:
+      "Cửa hàng giá hợp lý, xe đẹp, đội ngũ sửa chữa chuyên nghiệp. Tôi đã mua 2 xe cho cả gia đình và đều rất hài lòng.",
+    verified: true,
+  },
+  {
+    name: "Lê Minh Cường",
+    role: "Vận động viên",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=LMC&backgroundColor=c0aede",
+    rating: 5,
+    product: "Merida Reacto",
+    comment:
+      "Chế độ bảo hành rõ ràng minh bạch, dịch vụ hậu mãi tốt.",
+    verified: true,
+  },
+  {
+    name: "Phạm Thu Hà",
+    role: "Nhân viên văn phòng",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=PTH&backgroundColor=d1f0c0",
+    rating: 5,
+    product: "Xe đô thị",
+    comment:
+      "Nhân viên tư vấn tận tình giúp chọn chiếc phù hợp. Giao hàng nhanh, đóng gói cẩn thận.",
+    verified: true,
+  },
+] as const;
+---
+
+<section class="py-14 sm:py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-end justify-between mb-8 sm:mb-10">
+      <div>
+        <p class="text-blue-600 text-sm font-semibold uppercase tracking-wider mb-1">Đánh giá</p>
+        <h2 class="text-gray-900" style="font-size:clamp(1.4rem,3.5vw,2rem);font-weight:800;">
+          Khách hàng nói gì?
+        </h2>
+      </div>
+      <div class="hidden sm:flex flex-col items-center bg-blue-600 text-white px-6 py-3 rounded-2xl">
+        <span class="font-black" style="font-size:1.8rem;line-height:1;">4.9</span>
+        <div class="flex mt-1 gap-0.5">
+          {Array.from({ length: 5 }).map(() => (
+            <LucideIcon name="star" className="w-3.5 h-3.5 text-yellow-300 fill-yellow-300" aria-hidden="true" />
+          ))}
+        </div>
+        <span class="text-blue-200 text-xs mt-1">Google Reviews</span>
+      </div>
+    </div>
+
+    <div class="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-5 scrollbar-none">
+      {testimonials.map((t) => (
+        <div class="bg-white rounded-2xl p-5 border border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all duration-300 shrink-0 w-[82vw] sm:w-auto flex flex-col">
+          <div class="w-6 h-6 text-blue-100 mb-3 flex items-center justify-center">
+            <LucideIcon name="quote" className="w-6 h-6" aria-hidden="true" />
+          </div>
+          <div class="flex gap-0.5 mb-3">
+            {Array.from({ length: t.rating }).map(() => (
+              <LucideIcon name="star" className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" aria-hidden="true" />
+            ))}
+          </div>
+          <p class="text-gray-600 text-sm leading-relaxed mb-4 flex-1">"{t.comment}"</p>
+          <div class="text-blue-600 text-xs font-semibold mb-3 bg-blue-50 px-3 py-1.5 rounded-lg inline-flex items-center gap-1.5 w-fit">
+            <LucideIcon name="bike" className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+            {t.product}
+          </div>
+          <div class="flex items-center gap-3 pt-3 border-t border-gray-100">
+            <img src={t.avatar} alt={t.name} class="w-10 h-10 rounded-full bg-gray-100 shrink-0" loading="lazy" />
+            <div class="min-w-0">
+              <div class="font-bold text-gray-800 text-sm truncate">{t.name}</div>
+              <div class="text-gray-400 text-xs">{t.role}</div>
+            </div>
+            {t.verified ? (
+              <div class="ml-auto text-green-500 shrink-0 flex items-center justify-center" title="Đã xác minh">
+                <LucideIcon name="badgeCheck" className="w-5 h-5" aria-hidden="true" />
+              </div>
+            ) : null}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

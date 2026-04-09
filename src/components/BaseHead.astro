@@ -1,76 +1,90 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
+import { store } from "@/data/store";
+
+type Props = {
+  title?: string;
+  description?: string;
+  /** Absolute (https://...) or site-root (/...) image URL for OG/Twitter previews */
+  image?: string;
+  /** Set true for filter/search pages to avoid duplicate indexing */
+  noindex?: boolean;
+  /** Override canonical path (e.g. "/products/") */
+  canonicalPath?: string;
+};
+
+const {
+  title = `${store.name} — ${store.area}`,
+  description = store.description,
+  image,
+  noindex = false,
+  canonicalPath,
+} = Astro.props;
+
+const origin = Astro.site?.href.replace(/\/$/, "") ?? Astro.url?.origin ?? "https://example.com";
+const canonicalUrl = new URL(canonicalPath ?? Astro.url?.pathname ?? "/", origin).href;
+const ogImage = image
+  ? image.startsWith("http")
+    ? image
+    : new URL(image, origin).href
+  : undefined;
+
+/** Đường dẫn tới asset trong `public/` (đúng cả khi có `base` trong astro.config) */
+const faviconHref = `${import.meta.env.BASE_URL}favicon.svg`.replace(/\/{2,}/g, "/");
+/** Đổi ?v= khi đổi file favicon — tránh tab vẫn dùng bản cache cũ / 404 */
+const faviconBust = "?v=2";
 ---
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href={`${faviconHref}${faviconBust}`} type="image/svg+xml" sizes="any" />
+<link rel="shortcut icon" href={`${faviconHref}${faviconBust}`} type="image/svg+xml" />
+<link rel="apple-touch-icon" href={`${faviconHref}${faviconBust}`} />
 
-<!-- Basic Meta Tags -->
-<title>Your Website Title</title>
-<meta
-  name="description"
-  content="A brief description of your website content."
-/>
-<meta name="keywords" content="keyword1, keyword2, keyword3" />
-<meta name="author" content="Your Name or Company Name" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="robots" content={noindex ? "noindex, follow" : "index, follow"} />
 
-<!-- Favicons -->
-<link rel="icon" href="/favicon.ico" sizes="any" />
-<link rel="icon" href="/icon.svg" type="image/svg+xml" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<link rel="manifest" href="/manifest.webmanifest" />
-
-<!-- Favicon for IE -->
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-
-<!-- Favicons for different sizes -->
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
-
-<!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.yourwebsite.com/" />
-<meta property="og:title" content="Your Website Title" />
-<meta
-  property="og:description"
-  content="A brief description of your website content."
-/>
-<meta
-  property="og:image"
-  content="https://www.yourwebsite.com/path/to/image.jpg"
-/>
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:locale" content="vi_VN" />
+{ogImage ? <meta property="og:image" content={ogImage} /> : null}
 
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content="https://www.yourwebsite.com/" />
-<meta property="twitter:title" content="Your Website Title" />
-<meta
-  property="twitter:description"
-  content="A brief description of your website content."
-/>
-<meta
-  property="twitter:image"
-  content="https://www.yourwebsite.com/path/to/image.jpg"
-/>
+<meta property="twitter:card" content={ogImage ? "summary_large_image" : "summary"} />
+<meta property="twitter:url" content={canonicalUrl} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+{ogImage ? <meta property="twitter:image" content={ogImage} /> : null}
 
-<!-- Canonical URL -->
-<link rel="canonical" href="https://www.yourwebsite.com/" />
+<link rel="canonical" href={canonicalUrl} />
 
-<!-- Additional SEO -->
-<meta name="robots" content="index, follow" />
-<meta name="googlebot" content="index, follow" />
-
-<!-- Apple Touch Icon (already included in favicons, but keeping for backwards compatibility) -->
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-
-<!-- Theme Color for Mobile Browsers -->
-<meta name="theme-color" content="#3E433E" />
-
-<!-- For IE -->
+<meta name="theme-color" content="#1d4ed8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "Store", "BikeStore"],
+    name: store.name,
+    description,
+    telephone: store.phoneDisplay,
+    url: canonicalUrl,
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "VN",
+      streetAddress: store.address,
+    },
+  })}
+/>
 
-
-<!-- HTML in your document's head -->
 <link rel="preconnect" href="https://rsms.me/" />
 <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+  rel="stylesheet"
+/>

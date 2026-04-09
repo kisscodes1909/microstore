@@ -1,0 +1,47 @@
+---
+import LucideIcon from "@/components/icons/LucideIcon";
+import type { LucideIconName } from "@/components/icons/LucideIcon";
+
+const items: {
+  title: string;
+  desc: string;
+  color: string;
+  bg: string;
+  icon: LucideIconName;
+}[] = [
+  { title: "Miễn phí vận chuyển", desc: "Đơn từ 500.000₫", color: "text-blue-600", bg: "bg-blue-50", icon: "truck" },
+  { title: "Bảo hành chính hãng", desc: "12 – 24 tháng", color: "text-green-600", bg: "bg-green-50", icon: "shieldCheck" },
+  { title: "Tư vấn miễn phí", desc: "Giờ mở cửa mỗi ngày", color: "text-purple-600", bg: "bg-purple-50", icon: "headphones" },
+  { title: "Đổi trả dễ dàng", desc: "Trong vòng 7 ngày", color: "text-orange-600", bg: "bg-orange-50", icon: "refreshCw" },
+];
+---
+
+<section class="bg-white border-b border-gray-100">
+  <div class="flex overflow-x-auto gap-3 px-4 py-4 sm:hidden scrollbar-none -mx-0">
+    {items.map((item) => (
+      <div class="flex items-center gap-2.5 bg-gray-50 border border-gray-100 rounded-2xl px-4 py-3 shrink-0 min-w-[200px]">
+        <div class={`${item.bg} p-2 rounded-xl shrink-0 flex items-center justify-center`}>
+          <LucideIcon name={item.icon} className={`w-4 h-4 ${item.color}`} aria-hidden="true" />
+        </div>
+        <div>
+          <div class="font-semibold text-gray-800 text-sm leading-tight">{item.title}</div>
+          <div class="text-gray-500 text-xs mt-0.5">{item.desc}</div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="hidden sm:grid grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 divide-x divide-gray-100">
+    {items.map((item) => (
+      <div class="flex items-center gap-3 px-5 py-5">
+        <div class={`${item.bg} p-2.5 rounded-xl shrink-0 flex items-center justify-center`}>
+          <LucideIcon name={item.icon} className={`w-5 h-5 ${item.color}`} aria-hidden="true" />
+        </div>
+        <div>
+          <div class="font-semibold text-gray-800 text-sm leading-tight">{item.title}</div>
+          <div class="text-gray-500 text-xs mt-0.5">{item.desc}</div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

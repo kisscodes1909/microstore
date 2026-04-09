@@ -1,14 +1,74 @@
-<footer>
-  <div class="justify-center w-fit mx-auto text-center py-12">
-    <p class="font-medium text-base text-base-900">Micro Store</p>
-    <p class="text-sm mt-1 text-base-500 ">
-      Designed and built in the Åland Islands<br />by
-      <a
-        href="https://michaelandreuzza.com/"
-        class="underline hover:text-base-500 duration-200"
-      >
-        Michael Andreuzza.
-      </a>
-    </p>
+---
+import { store } from "@/data/store";
+---
+
+<footer class="mt-10 border-t border-base-100 bg-white">
+  <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-10">
+    <div class="grid gap-8 md:grid-cols-4">
+      <div class="md:col-span-2">
+        <div class="text-base-900 font-extrabold tracking-tight uppercase">{store.brand}</div>
+        <div class="mt-2 text-sm text-base-500">{store.tagline}</div>
+        <div class="mt-4 space-y-1 text-sm text-base-700">
+          <div><span class="font-semibold text-base-900">Địa chỉ:</span> {store.address}</div>
+          <div><span class="font-semibold text-base-900">Giờ mở cửa:</span> {store.hours}</div>
+          <div>
+            <span class="font-semibold text-base-900">Hotline:</span>{" "}
+            <a class="hover:underline" href={`tel:${store.phoneTel}`}>{store.phoneDisplay}</a>
+          </div>
+        </div>
+        <div class="mt-5 flex flex-wrap gap-2">
+          <a
+            class="px-4 font-semibold h-10 text-xs bg-orange-600 text-white rounded-md flex items-center justify-center hover:bg-orange-700 duration-200 w-fit"
+            href={`tel:${store.phoneTel}`}
+          >
+            Gọi ngay
+          </a>
+          <a
+            class="px-4 font-semibold h-10 text-xs bg-base-100 text-base-900 rounded-md flex items-center justify-center hover:bg-base-200 duration-200 w-fit"
+            href={store.zaloUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Nhắn Zalo
+          </a>
+          <a
+            class="px-4 font-semibold h-10 text-xs bg-base-100 text-base-900 rounded-md flex items-center justify-center hover:bg-base-200 duration-200 w-fit"
+            href={store.mapsPlaceUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Google Maps
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="text-xs font-semibold uppercase tracking-widest text-base-500">Danh mục</div>
+        <ul class="mt-3 space-y-2 text-sm text-base-700">
+          <li>Phụ tùng xe đạp điện</li>
+          <li>Xe đạp thể thao</li>
+          <li>Xe đạp học sinh</li>
+          <li>Xe đạp trẻ em</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="text-xs font-semibold uppercase tracking-widest text-base-500">Liên kết</div>
+        <ul class="mt-3 space-y-2 text-sm text-base-700">
+          <li><a class="hover:underline" href="/#dia-chi">Cửa hàng</a></li>
+          <li><a class="hover:underline" href="/#danh-muc">Danh mục</a></li>
+          <li><a class="hover:underline" href="/#b2b">B2B</a></li>
+          <li><a class="hover:underline" href="/#danh-gia">Đánh giá</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-10 border-t border-base-100 pt-6 text-xs text-base-500 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      <div>© {new Date().getFullYear()} {store.brand}. All rights reserved.</div>
+      <div class="flex gap-3">
+        <a class="hover:underline" href={store.reviewsUrl} target="_blank" rel="noreferrer">Review Google</a>
+        <a class="hover:underline" href={store.mapsPlaceUrl} target="_blank" rel="noreferrer">Bản đồ</a>
+      </div>
+    </div>
   </div>
 </footer>

@@ -1,0 +1,129 @@
+---
+import NewDesignLayout from "@/layouts/NewDesignLayout.astro";
+import LucideIcon from "@/components/icons/LucideIcon";
+import ProductQuickViewIsland from "@/components/islands/ProductQuickViewIsland";
+import { ALL_PRODUCTS, CATEGORIES } from "@/react-app/data/products";
+import { store } from "@/data/store";
+
+function formatPrice(p: number) {
+  return p.toLocaleString("vi-VN") + "₫";
+}
+
+const category = Astro.url.searchParams.get("category");
+const filtered = category
+  ? ALL_PRODUCTS.filter((p) => p.category === category)
+  : ALL_PRODUCTS;
+---
+
+<NewDesignLayout
+  title={`Sản phẩm — ${store.brand}`}
+  description="Danh sách xe đạp, phụ tùng, xe trẻ em. Lọc theo danh mục, xem nhanh hoặc xem chi tiết từng sản phẩm."
+  canonicalPath="/products/"
+  noindex={Boolean(category)}
+>
+  <section class="py-10 sm:py-14 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+        <div>
+          <p class="text-blue-600 text-xs font-semibold uppercase tracking-wider mb-1">Sản phẩm</p>
+          <h1 class="text-gray-900" style="font-size:clamp(1.4rem, 3.5vw, 2rem);font-weight:800;">
+            Xe đạp & phụ tùng
+          </h1>
+          <p class="mt-2 text-gray-500 text-sm sm:text-base max-w-2xl">
+            Chọn danh mục để lọc. Bấm “Xem nhanh” để mở modal, hoặc vào trang chi tiết để xem thêm.
+          </p>
+        </div>
+        <div class="flex gap-2">
+          <a href={`tel:${store.phoneTel}`} class="hidden sm:inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors min-h-[48px]">
+            Gọi {store.phoneDisplay}
+          </a>
+          <a href={store.zaloUrl} target="_blank" rel="noreferrer" class="hidden sm:inline-flex items-center justify-center bg-teal-500 hover:bg-teal-600 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors min-h-[48px]">
+            Chat Zalo
+          </a>
+        </div>
+      </div>
+
+      <div class="flex gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 mb-7 scrollbar-none">
+        <a
+          href="/products/"
+          class={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap shrink-0 transition-all min-h-[40px] ${
+            !category ? "bg-blue-600 text-white shadow-sm" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+          }`}
+        >
+          Tất cả
+        </a>
+        {CATEGORIES.map((c) => (
+          <a
+            href={`/products/?category=${encodeURIComponent(c.name)}`}
+            class={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap shrink-0 transition-all min-h-[40px] ${
+              category === c.name ? "bg-blue-600 text-white shadow-sm" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+            }`}
+          >
+            {c.name}
+          </a>
+        ))}
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+        {filtered.map((p) => (
+          <div class="bg-white rounded-2xl border border-gray-100 hover:border-blue-200 hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+            <a href={`/products/${p.id}/`} class="relative overflow-hidden bg-gray-50 block" style="aspect-ratio:1 / 1;">
+              <img src={p.image} alt={p.name} class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+              {p.badge ? (
+                <span class={`absolute top-2 left-2 ${p.badgeColor} text-white text-[9px] font-bold px-2 py-0.5 rounded-md`}>
+                  {p.badge}
+                </span>
+              ) : null}
+              {!p.inStock ? (
+                <div class="absolute inset-0 bg-gray-900/50 flex items-center justify-center">
+                  <span class="bg-gray-800 text-white text-xs font-bold px-3 py-1.5 rounded-xl">Hết hàng</span>
+                </div>
+              ) : null}
+            </a>
+
+            <div class="p-3 flex flex-col flex-1">
+              <div class="text-[10px] text-blue-600 font-semibold uppercase mb-0.5 truncate">{p.brand}</div>
+              <a href={`/products/${p.id}/`} class="font-bold text-gray-800 mb-1.5 line-clamp-2 leading-snug flex-1 hover:text-blue-600 transition-colors" style="font-size:clamp(0.76rem,2.5vw,0.88rem);">
+                {p.name}
+              </a>
+              <div class="mb-2.5">
+                <div class="text-red-600 font-black leading-none" style="font-size:clamp(0.88rem,3vw,1rem);">{formatPrice(p.price)}</div>
+                {p.oldPrice ? <div class="text-gray-400 line-through text-[10px] mt-0.5">{formatPrice(p.oldPrice)}</div> : null}
+                {p.installment ? <div class="text-green-600 text-[10px] font-semibold mt-0.5">Trả góp 0%</div> : null}
+              </div>
+
+              <div class="flex gap-1.5 mt-auto">
+                <button
+                  type="button"
+                  class="flex-1 flex items-center justify-center gap-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white py-2.5 rounded-xl text-xs font-bold transition-colors min-h-[40px]"
+                  disabled={!p.inStock}
+                  onclick={`window.__qbOpenQuickView && window.__qbOpenQuickView(${p.id})`}
+                >
+                  Xem nhanh
+                </button>
+                <a
+                  href={`tel:${store.phoneTel}`}
+                  class="flex items-center justify-center bg-gray-100 hover:bg-gray-200 active:bg-gray-300 text-gray-600 p-2.5 rounded-xl transition-colors min-w-[40px] min-h-[40px]"
+                  aria-label="Gọi"
+                >
+                  <LucideIcon name="phone" className="w-4 h-4" aria-hidden="true" />
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="sm:hidden mt-6 grid grid-cols-2 gap-3">
+        <a href={`tel:${store.phoneTel}`} class="inline-flex items-center justify-center rounded-xl bg-blue-600 px-4 py-3 text-white font-semibold shadow-sm hover:bg-blue-700 transition-colors">
+          Gọi
+        </a>
+        <a href={store.zaloUrl} target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-xl bg-teal-500 px-4 py-3 text-white font-semibold shadow-sm hover:bg-teal-600 transition-colors">
+          Zalo
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <ProductQuickViewIsland client:load products={ALL_PRODUCTS} />
+</NewDesignLayout>

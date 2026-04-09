@@ -1,0 +1,273 @@
+---
+import NewDesignLayout from "@/layouts/NewDesignLayout.astro";
+import LucideIcon from "@/components/icons/LucideIcon";
+import { ALL_PRODUCTS, CATEGORIES } from "@/react-app/data/products";
+import { store } from "@/data/store";
+
+export function getStaticPaths() {
+  return ALL_PRODUCTS.map((p) => ({ params: { id: String(p.id) } }));
+}
+
+const { id } = Astro.params;
+const product = ALL_PRODUCTS.find((p) => p.id === Number(id));
+
+function formatPrice(p: number) {
+  return p.toLocaleString("vi-VN") + "₫";
+}
+
+const galleryImages = product?.images?.length ? product.images : product ? [product.image] : [];
+const hasVideo = Boolean(product?.videoUrl);
+const origin = Astro.site?.href.replace(/\/$/, "") ?? Astro.url.origin;
+const canonicalUrl = new URL(Astro.url.pathname, origin).href;
+---
+
+<NewDesignLayout
+  title={product ? `${product.name} — ${store.brand}` : `Sản phẩm — ${store.brand}`}
+  description={product?.desc ?? store.description}
+  image={product?.image}
+>
+  {product ? (
+    <section class="min-h-screen bg-gray-50">
+      <div class="bg-white border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <nav class="flex items-center gap-1.5 text-xs text-gray-500 overflow-x-auto whitespace-nowrap">
+            <a href="/" class="hover:text-blue-600 transition-colors shrink-0">Trang chủ</a>
+            <span class="text-gray-300">/</span>
+            <a href="/products/" class="hover:text-blue-600 transition-colors shrink-0">Sản phẩm</a>
+            <span class="text-gray-300">/</span>
+            <span class="text-gray-900 font-semibold shrink-0">{product.name}</span>
+          </nav>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div class="grid lg:grid-cols-2 gap-7 lg:gap-12 items-start">
+          <!-- Media gallery -->
+          <div class="space-y-3">
+            <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
+              <div class="bg-gray-50 relative">
+                <img
+                  src={galleryImages[0]}
+                  alt={product.name}
+                  class="w-full h-72 sm:h-[420px] object-cover"
+                  loading="lazy"
+                  data-media-main-image
+                />
+                {hasVideo ? (
+                  <div class="hidden w-full h-72 sm:h-[420px] bg-black" data-media-main-video>
+                    <iframe
+                      class="w-full h-full"
+                      src={product.videoUrl}
+                      title={`${product.name} video`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen
+                    />
+                  </div>
+                ) : null}
+              </div>
+            </div>
+
+            <div class="flex gap-2 overflow-x-auto scrollbar-none">
+              {galleryImages.map((src, idx) => (
+                <button
+                  type="button"
+                  class={`shrink-0 w-20 h-20 rounded-xl overflow-hidden border border-gray-200 bg-white hover:border-blue-400 transition-colors ${idx === 0 ? "ring-2 ring-blue-200" : ""}`}
+                  data-media-thumb
+                  data-media-type="image"
+                  data-media-src={src}
+                  aria-label={`Ảnh ${idx + 1}`}
+                >
+                  <img src={src} alt="" class="w-full h-full object-cover" loading="lazy" />
+                </button>
+              ))}
+
+              {hasVideo ? (
+                <button
+                  type="button"
+                  class="shrink-0 w-20 h-20 rounded-xl overflow-hidden border border-gray-200 bg-gray-900 hover:border-blue-400 transition-colors relative"
+                  data-media-thumb
+                  data-media-type="video"
+                  aria-label="Video"
+                >
+                  <div class="absolute inset-0 opacity-70 bg-gradient-to-tr from-black via-black/30 to-black/10"></div>
+                  <div class="relative z-10 w-full h-full flex items-center justify-center text-white">
+                    <LucideIcon name="play" className="w-10 h-10 fill-white" aria-hidden="true" />
+                  </div>
+                </button>
+              ) : null}
+            </div>
+          </div>
+
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-semibold uppercase text-blue-600">{product.brand}</span>
+              <span class="text-gray-300">•</span>
+              <span class="text-xs font-semibold uppercase text-gray-500">{product.category}</span>
+            </div>
+
+            <h1 class="text-gray-900 font-black mt-2" style="font-size:clamp(1.4rem, 4vw, 2.2rem);line-height:1.15;">
+              {product.name}
+            </h1>
+
+            <p class="text-gray-600 mt-3 leading-relaxed">{product.desc}</p>
+
+            <div class="mt-5">
+              <div class="text-red-600 font-black" style="font-size:1.9rem;line-height:1;">
+                {formatPrice(product.price)}
+              </div>
+              {product.oldPrice ? (
+                <div class="flex items-center gap-2 mt-1">
+                  <span class="text-gray-400 line-through text-sm">{formatPrice(product.oldPrice)}</span>
+                  <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-lg">
+                    Tiết kiệm {formatPrice(product.oldPrice - product.price)}
+                  </span>
+                </div>
+              ) : null}
+            </div>
+
+            <div class="mt-6 flex flex-col sm:flex-row gap-3">
+              <a
+                href={`tel:${store.phoneTel}`}
+                class="flex items-center justify-center gap-2 border-2 border-blue-600 text-blue-600 hover:bg-blue-50 rounded-xl px-4 py-3 text-sm font-bold transition-colors min-h-[52px]"
+              >
+                Gọi tư vấn
+              </a>
+              <a
+                href={store.zaloUrl}
+                target="_blank"
+                rel="noreferrer"
+                class="flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 text-white rounded-xl px-4 py-3 text-sm font-bold transition-colors min-h-[52px]"
+              >
+                Chat Zalo
+              </a>
+            </div>
+
+            <div class="mt-6 grid grid-cols-2 gap-3">
+              <div class="bg-white rounded-2xl border border-gray-100 p-4">
+                <div class="text-xs text-gray-500 font-semibold uppercase">Tình trạng</div>
+                <div class={`mt-1 font-black ${product.inStock ? "text-green-600" : "text-red-600"}`}>
+                  {product.inStock ? "Còn hàng" : "Hết hàng"}
+                </div>
+              </div>
+              <div class="bg-white rounded-2xl border border-gray-100 p-4">
+                <div class="text-xs text-gray-500 font-semibold uppercase">Hotline</div>
+                <a class="mt-1 block font-black text-blue-600 hover:underline" href={`tel:${store.phoneTel}`}>
+                  {store.phoneDisplay}
+                </a>
+              </div>
+            </div>
+
+            <div class="mt-6 text-xs text-gray-400">
+              Mã SP: <span class="font-semibold text-gray-600">{product.sku}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Specs table (focus section like xedap.vn) -->
+        {product.specs?.length ? (
+          <div class="mt-10 sm:mt-14 bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
+            <div class="px-5 sm:px-7 py-4 border-b border-gray-100 flex items-center justify-between gap-4">
+              <div>
+                <div class="text-xs text-blue-600 font-semibold uppercase tracking-wider">Thông số kỹ thuật</div>
+                <h2 class="text-gray-900 font-black text-lg">Cấu hình / Specs</h2>
+              </div>
+              <a
+                href={store.zaloUrl}
+                target="_blank"
+                rel="noreferrer"
+                class="hidden sm:inline-flex items-center justify-center bg-teal-500 hover:bg-teal-600 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors"
+              >
+                Gửi cấu hình qua Zalo
+              </a>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <tbody>
+                  {product.specs.map((s, i) => (
+                    <tr class={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                      <td class="px-5 sm:px-7 py-3 text-gray-500 whitespace-nowrap w-[38%]">{s.label}</td>
+                      <td class="px-5 sm:px-7 py-3 font-semibold text-gray-900">{s.value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </section>
+  ) : (
+    <section class="py-16">
+      <div class="max-w-3xl mx-auto px-4 text-center">
+        <div class="flex justify-center mb-4 text-blue-600">
+          <LucideIcon name="bike" className="w-20 h-20 sm:w-24 sm:h-24" strokeWidth={1.25} aria-hidden="true" />
+        </div>
+        <h1 class="text-2xl font-black">Không tìm thấy sản phẩm</h1>
+        <p class="text-gray-500 mt-2">Sản phẩm không tồn tại hoặc đã bị thay đổi.</p>
+        <div class="mt-6">
+          <a href="/products/" class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-bold">
+            Về trang sản phẩm
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+</NewDesignLayout>
+
+{product ? (
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: product.name,
+      description: product.desc,
+      sku: product.sku,
+      brand: { "@type": "Brand", name: product.brand },
+      category: product.category,
+      image: product.images?.length ? product.images : [product.image],
+      url: canonicalUrl,
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "VND",
+        price: product.price,
+        availability: product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+        url: canonicalUrl,
+      },
+    })}
+  />
+) : null}
+
+<script is:inline>
+  {String.raw`
+    (() => {
+      const mainImg = document.querySelector('[data-media-main-image]');
+      const mainVideo = document.querySelector('[data-media-main-video]');
+      const thumbs = document.querySelectorAll('[data-media-thumb]');
+      if (!mainImg || thumbs.length === 0) return;
+
+      const showImage = (src) => {
+        if (mainVideo) mainVideo.classList.add('hidden');
+        mainImg.classList.remove('hidden');
+        mainImg.src = src;
+      };
+
+      const showVideo = () => {
+        if (!mainVideo) return;
+        mainImg.classList.add('hidden');
+        mainVideo.classList.remove('hidden');
+      };
+
+      thumbs.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const type = btn.getAttribute('data-media-type');
+          if (type === 'video') return showVideo();
+          const src = btn.getAttribute('data-media-src');
+          if (src) showImage(src);
+        });
+      });
+    })();
+  `}
+</script>
+

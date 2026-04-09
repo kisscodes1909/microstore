@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@source "../react-app/**/*.{ts,tsx}";
+@import "tw-animate-css";
+@import "./new-design-theme.css";
+
 @theme {
 
   /* base  */
@@ -14,18 +18,18 @@
   --color-base-900: oklch(26.54% 0.006 134.86);
   --color-base-950: oklch(20.6% 0.005 145.31);
 
-  /* ORange  */
-  --color-orange-50: oklch(96.67% 0.016 22.18);
-  --color-orange-100: oklch(93.48% 0.031 25.08);
-  --color-orange-200: oklch(87.73% 0.063 23.27);
-  --color-orange-300: oklch(81.39% 0.103 25.4);
-  --color-orange-400: oklch(74.91% 0.147 28.05);
-  --color-orange-500: oklch(68.91% 0.197 32.57);
-  --color-orange-600: oklch(58.25% 0.195 35.62);
-  --color-orange-700: oklch(47.53% 0.159 35.63);
-  --color-orange-800: oklch(36.86% 0.123 35.58);
-  --color-orange-900: oklch(24.99% 0.084 35.46);
-  --color-orange-950: oklch(19.57% 0.065 34.67);
+  /* brand (blue) */
+  --color-orange-50: oklch(97% 0.02 250);
+  --color-orange-100: oklch(94% 0.04 250);
+  --color-orange-200: oklch(88% 0.07 250);
+  --color-orange-300: oklch(80% 0.11 250);
+  --color-orange-400: oklch(72% 0.15 250);
+  --color-orange-500: oklch(64% 0.19 250);
+  --color-orange-600: oklch(56% 0.19 250);
+  --color-orange-700: oklch(46% 0.16 250);
+  --color-orange-800: oklch(36% 0.12 250);
+  --color-orange-900: oklch(26% 0.08 250);
+  --color-orange-950: oklch(19% 0.06 250);
 
 
 }
@@ -38,12 +42,12 @@
     /* Slashed zero */ "tnum" 1, /* Tabular numbers */ "cv03" 1,
     /* Open six */ "cv04" 1, /* Open nine */ "cv01" 1,
     /* Alternate one */ "cv09", /* Flat-top three */ "cv02" 1; /* Open 4 */
-  font-family: Inter, sans-serif;
+  font-family: Montserrat, Inter, sans-serif;
   font-variant-numeric: tabular-nums;
 }
 @supports (font-variation-settings: normal) {
   /* Use variable font if supported */
   :root {
-    font-family: InterVariable, sans-serif;
+    font-family: Montserrat, InterVariable, sans-serif;
   }
 }

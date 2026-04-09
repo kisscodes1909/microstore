@@ -1,0 +1,33 @@
+---
+import { store } from "@/data/store";
+---
+
+<section class="pb-2">
+  <div class="rounded-xl border border-base-100 bg-white shadow-sm overflow-hidden">
+    <div class="grid divide-y md:divide-y-0 md:divide-x divide-base-100 md:grid-cols-4">
+      <div class="p-5">
+        <div class="text-xs font-extrabold uppercase tracking-[0.22em] text-orange-700">Hotline</div>
+        <div class="mt-2 text-base-900 font-extrabold">
+          <a class="hover:underline" href={`tel:${store.phoneTel}`}>{store.phoneDisplay}</a>
+        </div>
+        <div class="mt-1 text-xs text-base-500">Gọi để tư vấn nhanh</div>
+      </div>
+      <div class="p-5">
+        <div class="text-xs font-extrabold uppercase tracking-[0.22em] text-orange-700">Giờ mở cửa</div>
+        <div class="mt-2 text-base-900 font-extrabold">{store.hours}</div>
+        <div class="mt-1 text-xs text-base-500">Tất cả các ngày</div>
+      </div>
+      <div class="p-5">
+        <div class="text-xs font-extrabold uppercase tracking-[0.22em] text-orange-700">Danh mục chính</div>
+        <div class="mt-2 text-base-900 font-extrabold">4 nhóm</div>
+        <div class="mt-1 text-xs text-base-500">Phụ tùng • Thể thao • Học sinh • Trẻ em</div>
+      </div>
+      <div class="p-5">
+        <div class="text-xs font-extrabold uppercase tracking-[0.22em] text-orange-700">B2B</div>
+        <div class="mt-2 text-base-900 font-extrabold">Báo giá theo lô</div>
+        <div class="mt-1 text-xs text-base-500">Trường học • Du lịch Huế</div>
+      </div>
+    </div>
+  </div>
+</section>
+

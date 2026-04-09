@@ -1,0 +1,108 @@
+---
+import { store } from "@/data/store";
+import LucideIcon from "@/components/icons/LucideIcon";
+import logoUrl from "@/images/logo.svg?url";
+---
+
+<footer class="bg-gray-950 text-gray-400">
+  <div class="border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h4 class="text-white font-bold text-base mb-1">Liên hệ nhanh</h4>
+          <p class="text-gray-500 text-sm">Gọi hoặc nhắn Zalo để tư vấn và báo giá.</p>
+        </div>
+        <div class="flex gap-2 w-full sm:w-auto shrink-0">
+          <a
+            href={`tel:${store.phoneTel}`}
+            class="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-xl text-sm font-semibold transition-colors min-h-[48px]"
+          >
+            Gọi ngay
+          </a>
+          <a
+            href={store.zaloUrl}
+            target="_blank"
+            rel="noreferrer"
+            class="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 text-white px-4 py-3 rounded-xl text-sm font-semibold transition-colors min-h-[48px]"
+          >
+            Chat Zalo
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-0 sm:gap-8">
+      <div class="lg:col-span-2 pb-6 sm:pb-0 border-b border-gray-800 sm:border-0 mb-2 sm:mb-0">
+        <a href="/" class="inline-block mb-4">
+          <img
+            src={logoUrl}
+            alt={store.brand}
+            width="250"
+            height="150"
+            class="h-[60px] w-auto max-w-[320px] object-contain object-left"
+          />
+        </a>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4 max-w-xs">{store.description}</p>
+        <div class="space-y-2 mb-4">
+          <a href={`tel:${store.phoneTel}`} class="flex items-center gap-2 text-gray-400 hover:text-blue-400 transition-colors text-sm">
+            <LucideIcon name="phone" className="w-4 h-4 shrink-0 opacity-90" aria-hidden="true" />
+            {store.phoneDisplay}
+          </a>
+          <a href={store.mapsPlaceUrl} target="_blank" rel="noreferrer" class="flex items-start gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors">
+            <LucideIcon name="mapPin" className="w-4 h-4 shrink-0 mt-0.5 opacity-90" aria-hidden="true" />
+            <span>{store.address}</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-6 mt-2 sm:mt-0">
+        <div class="border-b border-gray-800 sm:border-0">
+          <div class="w-full flex items-center justify-between py-4 sm:py-0 sm:mb-4">
+            <span class="text-white font-bold text-sm">Liên kết nhanh</span>
+          </div>
+          <ul class="space-y-2 pb-4 sm:pb-0">
+            <li><a href="/" class="text-gray-500 hover:text-blue-400 text-sm transition-colors py-1 block">Trang chủ</a></li>
+            <li><a href="/#about" class="text-gray-500 hover:text-blue-400 text-sm transition-colors py-1 block">Giới thiệu</a></li>
+            <li><a href="/products/" class="text-gray-500 hover:text-blue-400 text-sm transition-colors py-1 block">Sản phẩm</a></li>
+            <li><a href="/#services" class="text-gray-500 hover:text-blue-400 text-sm transition-colors py-1 block">Dịch vụ</a></li>
+            <li><a href="/#contact" class="text-gray-500 hover:text-blue-400 text-sm transition-colors py-1 block">Liên hệ</a></li>
+          </ul>
+        </div>
+
+        <div class="border-b border-gray-800 sm:border-0">
+          <div class="w-full flex items-center justify-between py-4 sm:py-0 sm:mb-4">
+            <span class="text-white font-bold text-sm">Danh mục</span>
+          </div>
+          <ul class="space-y-2 pb-4 sm:pb-0">
+            <li class="text-gray-500 text-sm py-1">Phụ tùng xe điện</li>
+            <li class="text-gray-500 text-sm py-1">Xe đạp thể thao</li>
+            <li class="text-gray-500 text-sm py-1">Xe đạp học sinh</li>
+            <li class="text-gray-500 text-sm py-1">Xe đạp trẻ em</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="w-full flex items-center justify-between py-4 sm:py-0 sm:mb-4">
+            <span class="text-white font-bold text-sm">Thông tin</span>
+          </div>
+          <ul class="space-y-2 pb-4 sm:pb-0">
+            <li><a class="text-gray-500 hover:text-blue-400 text-sm transition-colors py-1 block" href={store.reviewsUrl} target="_blank" rel="noreferrer">Google Reviews</a></li>
+            <li><a class="text-gray-500 hover:text-blue-400 text-sm transition-colors py-1 block" href={store.mapsPlaceUrl} target="_blank" rel="noreferrer">Bản đồ</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left">
+      <p class="text-gray-600 text-xs">© {new Date().getFullYear()} {store.brand}. Tất cả quyền được bảo lưu.</p>
+      <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-gray-600">
+        <span>{store.hours}</span>
+      </div>
+    </div>
+  </div>
+</footer>
+

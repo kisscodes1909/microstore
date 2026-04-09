@@ -1,0 +1,253 @@
+---
+import { store } from "@/data/store";
+
+type HeroSlide = {
+  image: string;
+  alt: string;
+  kicker: string;
+  title: string;
+  highlight: string;
+  suffix: string;
+  body: string;
+};
+
+const slides: HeroSlide[] = [
+  {
+    image: "/hero/slide-1.svg",
+    alt: "Xe đạp thể thao — hero",
+    kicker: store.tagline,
+    title: store.brand,
+    highlight: "Xe đạp & phụ tùng",
+    suffix: `tại ${store.area}`,
+    body: store.description,
+  },
+  {
+    image: "/hero/slide-2.svg",
+    alt: "Phụ tùng & phụ kiện",
+    kicker: "Phụ tùng chính hãng",
+    title: "Linh kiện · Phụ kiện",
+    highlight: "Đúng chủng loại",
+    suffix: `tại ${store.area}`,
+    body: "Pin, lốp, phanh, truyền động và phụ kiện đi kèm — tư vấn lắp đặt tại chỗ.",
+  },
+  {
+    image: "/hero/slide-3.svg",
+    alt: "Xe đạp gia đình",
+    kicker: "Xe học sinh & trẻ em",
+    title: "Bền · an toàn",
+    highlight: "Đủ size",
+    suffix: "cho cả nhà",
+    body: "Chọn size phù hợp chiều cao, hỗ trợ căn yên và kiểm tra an toàn trước khi giao.",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1758231187893-fab297349f08?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    alt: "Cửa hàng xe đạp",
+    kicker: "Ghé cửa hàng",
+    title: "Tư vấn trực tiếp",
+    highlight: "Bảo hành & bảo dưỡng",
+    suffix: `— ${store.brand}`,
+    body: "Xem xe, trải nghiệm size và nhận báo giá nhanh qua hotline hoặc Zalo.",
+  },
+];
+---
+
+<section id="home" class="bg-gray-950">
+  <div class="relative isolate h-[650px] shrink-0 overflow-hidden w-full">
+    <div
+      id="hero-splide"
+      class="splide hero-splide absolute inset-0 z-0"
+      role="region"
+      aria-label="Ảnh nền hero"
+      data-hero-splide
+    >
+      <div class="splide__track h-full">
+        <ul class="splide__list h-full">
+          {slides.map((s, i) => (
+            <li class="splide__slide hero-slide">
+              <img
+                class="hero-slide__img"
+                src={s.image}
+                alt={s.alt}
+                width={1920}
+                height={1080}
+                loading={i === 0 ? "eager" : "lazy"}
+                decoding="async"
+                fetchpriority={i === 0 ? "high" : "auto"}
+              />
+              <div
+                class="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-gray-950/80 via-gray-950/60 to-gray-950/80 sm:bg-gradient-to-r sm:from-gray-950 sm:via-gray-900/85 sm:to-gray-900/30"
+              >
+              </div>
+              <div class="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-gray-950/80 via-transparent to-transparent"></div>
+              <div class="hero-slide__inner relative z-[2] flex h-full min-h-0 w-full items-center justify-start px-5 sm:px-8 max-w-7xl mx-auto py-0">
+                <div class="max-w-xl">
+                  <div class="inline-flex items-center gap-2 bg-blue-600/20 border border-blue-400/30 backdrop-blur-sm rounded-full px-3 py-1 mb-3">
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+                    <span class="text-blue-200 text-xs font-medium">{s.kicker}</span>
+                  </div>
+
+                  <h1 class="text-white mb-3 leading-[1.12]" style="font-size:clamp(1.65rem, 6vw, 3rem);font-weight:900;">
+                    {s.title}
+                    <br />
+                    <span
+                      class="text-transparent bg-clip-text"
+                      style="background-image:linear-gradient(90deg, #60a5fa, #38bdf8);"
+                    >
+                      {s.highlight}
+                    </span>{" "}
+                    {s.suffix}
+                  </h1>
+
+                  <p class="text-gray-300 text-sm sm:text-[0.9375rem] mb-5 leading-relaxed max-w-md">
+                    {s.body}
+                  </p>
+
+                  <div class="flex flex-col sm:flex-row gap-2.5 mb-5">
+                    <a
+                      href="/products/"
+                      class="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white px-6 py-3 rounded-xl font-bold text-sm sm:text-base transition-all hover:shadow-lg hover:shadow-blue-600/30 min-h-[48px] w-full sm:w-auto"
+                    >
+                      Xem sản phẩm <span class="font-black">→</span>
+                    </a>
+                    <a
+                      href={`tel:${store.phoneTel}`}
+                      class="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 active:bg-white/30 border border-white/30 text-white px-6 py-3 rounded-xl font-bold text-sm sm:text-base transition-all min-h-[48px] w-full sm:w-auto"
+                    >
+                      Gọi tư vấn ngay
+                    </a>
+                  </div>
+
+                  <div class="flex flex-col sm:flex-row sm:flex-wrap gap-1.5 sm:gap-x-5 sm:gap-y-1 text-gray-300 text-xs sm:text-sm">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-blue-400 shrink-0"></span> BH & sửa chữa tại cửa hàng
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-blue-400 shrink-0"></span> Tư vấn size · Zalo nhanh
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative z-20 bg-blue-700/90 backdrop-blur-sm border-t border-blue-600/50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-3 divide-x divide-blue-600/50">
+        <div class="flex flex-col items-center py-2 sm:py-3">
+          <span class="text-white font-black leading-none" style="font-size:clamp(1rem,3.5vw,1.5rem);">20+</span>
+          <span class="text-blue-200 text-[10px] sm:text-xs mt-0.5">Mẫu tham khảo</span>
+        </div>
+        <div class="flex flex-col items-center py-2 sm:py-3">
+          <span class="text-white font-black leading-none" style="font-size:clamp(1rem,3.5vw,1.5rem);">07:00–21:00</span>
+          <span class="text-blue-200 text-[10px] sm:text-xs mt-0.5">Mở cửa</span>
+        </div>
+        <div class="flex flex-col items-center py-2 sm:py-3">
+          <span class="text-white font-black leading-none" style="font-size:clamp(1rem,3.5vw,1.5rem);">4.9★</span>
+          <span class="text-blue-200 text-[10px] sm:text-xs mt-0.5">Đánh giá</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .hero-splide,
+  .hero-splide .splide__track,
+  .hero-splide .splide__list,
+  .hero-splide .splide__slide {
+    height: 100%;
+  }
+
+  .hero-slide {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-slide__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .hero-splide .splide__pagination {
+    bottom: 1rem;
+    padding: 0 0.5rem;
+    gap: 0.35rem;
+    z-index: 5;
+  }
+
+  .hero-splide .splide__pagination__page {
+    background: rgba(255, 255, 255, 0.35);
+    opacity: 1;
+  }
+
+  .hero-splide .splide__pagination__page.is-active {
+    background: #fff;
+    transform: scale(1.15);
+  }
+
+  .hero-splide .splide__arrow {
+    background: rgba(15, 23, 42, 0.45);
+    border-radius: 0.75rem;
+    opacity: 1;
+    width: 2.5rem;
+    height: 2.5rem;
+    z-index: 5;
+  }
+
+  .hero-splide .splide__arrow:hover:not(:disabled) {
+    background: rgba(37, 99, 235, 0.75);
+  }
+
+  .hero-splide .splide__arrow svg {
+    fill: #fff;
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  @media (max-width: 639px) {
+    .hero-splide .splide__arrow {
+      display: none;
+    }
+    .hero-splide .splide__pagination {
+      bottom: 0.75rem;
+    }
+  }
+</style>
+
+<script>
+  import Splide from "@splidejs/splide";
+  import "@splidejs/splide/css";
+
+  function mountHeroSplide() {
+    const root = document.querySelector<HTMLElement>("[data-hero-splide]");
+    if (!root || root.dataset.mounted === "1") return;
+    root.dataset.mounted = "1";
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    new Splide(root, {
+      type: "fade",
+      rewind: true,
+      autoplay: !reduceMotion,
+      interval: 5500,
+      speed: 900,
+      pauseOnHover: true,
+      pauseOnFocus: true,
+      arrows: true,
+      pagination: true,
+      height: "650px",
+    }).mount();
+  }
+
+  mountHeroSplide();
+  document.addEventListener("astro:page-load", mountHeroSplide);
+</script>

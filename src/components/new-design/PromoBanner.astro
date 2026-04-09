@@ -1,0 +1,54 @@
+---
+import { store } from "@/data/store";
+import LucideIcon from "@/components/icons/LucideIcon";
+---
+
+<section class="py-8 sm:py-10 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid sm:grid-cols-2 gap-4">
+      <a
+        class="relative rounded-2xl overflow-hidden cursor-pointer group min-h-[160px] sm:min-h-[200px] block"
+        style="background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 100%);"
+        href="/products/"
+      >
+        <div class="absolute right-0 bottom-0 w-40 sm:w-52 h-40 sm:h-52 opacity-10">
+          <div class="w-full h-full rounded-full bg-white"></div>
+        </div>
+        <div class="absolute top-6 right-4 sm:right-8 bottom-0 flex items-center opacity-20 pointer-events-none">
+          <LucideIcon name="zap" className="w-28 h-28 sm:w-36 sm:h-36 text-yellow-300" strokeWidth={1.25} aria-hidden="true" />
+        </div>
+        <div class="relative z-10 p-5 sm:p-8">
+          <span class="inline-block bg-yellow-400 text-yellow-900 text-xs font-black px-3 py-1 rounded-full mb-3 uppercase tracking-wide">
+            Flash Sale
+          </span>
+          <h3 class="text-white font-black mb-1.5" style="font-size:clamp(1.1rem,3vw,1.5rem);">Giảm đến 20%</h3>
+          <p class="text-blue-200 text-sm mb-4">Ưu đãi giới hạn cho xe đô thị & địa hình</p>
+          <span class="inline-flex items-center gap-1.5 text-white text-sm font-semibold group-hover:gap-3 transition-all">
+            Xem sản phẩm <span class="font-black">→</span>
+          </span>
+        </div>
+      </a>
+
+      <a
+        class="relative rounded-2xl overflow-hidden cursor-pointer group min-h-[160px] sm:min-h-[200px] block"
+        style="background:linear-gradient(135deg,#064e3b 0%,#059669 100%);"
+        href="/#services"
+      >
+        <div class="absolute right-0 bottom-0 w-40 sm:w-52 h-40 sm:h-52 opacity-10">
+          <div class="w-full h-full rounded-full bg-white"></div>
+        </div>
+        <div class="relative z-10 p-5 sm:p-8">
+          <span class="inline-block bg-emerald-300 text-emerald-900 text-xs font-black px-3 py-1 rounded-full mb-3 uppercase tracking-wide">
+            Dịch vụ
+          </span>
+          <h3 class="text-white font-black mb-1.5" style="font-size:clamp(1.1rem,3vw,1.5rem);">Bảo dưỡng miễn phí</h3>
+          <p class="text-emerald-200 text-sm mb-4">Khi mua xe tại {store.brand} – áp dụng 1 lần</p>
+          <span class="inline-flex items-center gap-1.5 text-white text-sm font-semibold group-hover:gap-3 transition-all">
+            Đặt lịch ngay <span class="font-black">→</span>
+          </span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
