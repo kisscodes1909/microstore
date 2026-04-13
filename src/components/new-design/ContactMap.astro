@@ -1,59 +1,74 @@
 ---
 import { store } from "@/data/store";
 import LucideIcon from "@/components/icons/LucideIcon";
+
+const contactCards = [
+  {
+    label: "Địa chỉ",
+    value: store.address,
+    icon: "mapPin" as const,
+    color: "text-red-600",
+    bg: "bg-red-50",
+    border: "border-red-100",
+  },
+  {
+    label: "Điện thoại",
+    value: store.phoneDisplay,
+    icon: "phone" as const,
+    color: "text-green-600",
+    bg: "bg-green-50",
+    border: "border-green-100",
+  },
+  {
+    label: "Giờ mở cửa",
+    value: store.hours,
+    icon: "clock" as const,
+    color: "text-blue-600",
+    bg: "bg-blue-50",
+    border: "border-blue-100",
+  },
+  {
+    label: "Zalo",
+    value: "Chat nhanh qua Zalo",
+    icon: "messageCircle" as const,
+    color: "text-purple-600",
+    bg: "bg-purple-50",
+    border: "border-purple-100",
+  },
+];
 ---
 
-<section id="contact" class="py-14 sm:py-20 bg-white">
+<section id="contact" class="py-14 sm:py-24 bg-section-canvas border-t border-blue-100/50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-10 sm:mb-12">
-      <p class="text-blue-600 text-sm font-semibold uppercase tracking-wider mb-2">Liên hệ</p>
-      <h2 class="text-gray-900 mb-3" style="font-size:clamp(1.4rem,3.5vw,2rem);font-weight:800;">
-        Ghé thăm hoặc liên hệ với chúng tôi
+
+    <!-- Heading canh giữa -->
+    <div class="text-center mb-10 sm:mb-14">
+      <p class="text-blue-600 text-xs font-bold uppercase tracking-widest mb-2">Liên hệ</p>
+      <h2 class="text-gray-900 mx-auto" style="font-size:clamp(1.5rem,5vw,2.4rem);font-weight:800;line-height:1.2;max-width:30ch;">
+        Ghé thăm hoặc{" "}
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500">liên hệ ngay</span>
       </h2>
-      <p class="text-gray-500 max-w-lg mx-auto text-sm sm:text-base">
-        Gọi hoặc nhắn Zalo để tư vấn nhanh. Website này không nhận đặt hàng online.
+      <p class="text-gray-500 text-sm sm:text-base mt-3 max-w-xl mx-auto leading-relaxed">
+        Gọi hoặc nhắn Zalo để tư vấn nhanh. Ghé trực tiếp cửa hàng để xem xe và trải nghiệm.
       </p>
     </div>
 
-    <div class="grid lg:grid-cols-5 gap-8">
-      <div class="lg:col-span-2 space-y-5">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-[30px]">
+
+      <!-- Thông tin liên hệ — 5 cột -->
+      <div class="lg:col-span-5 space-y-4">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
-          <div class="flex gap-3 p-4 bg-red-50 border border-red-100 rounded-2xl">
-            <div class="bg-red-50 p-2 rounded-xl border border-red-100 shrink-0 h-fit flex items-center justify-center text-red-600">
-              <LucideIcon name="mapPin" className="w-5 h-5" aria-hidden="true" />
+          {contactCards.map((c) => (
+            <div class={`flex gap-3 p-4 ${c.bg} border ${c.border} rounded-2xl`}>
+              <div class={`${c.bg} p-2 rounded-xl border ${c.border} shrink-0 h-fit flex items-center justify-center ${c.color}`}>
+                <LucideIcon name={c.icon} className="w-5 h-5" aria-hidden="true" />
+              </div>
+              <div>
+                <div class="font-bold text-gray-700 text-sm mb-0.5">{c.label}</div>
+                <div class="text-gray-600 text-xs whitespace-pre-line leading-relaxed">{c.value}</div>
+              </div>
             </div>
-            <div>
-              <div class="font-bold text-gray-700 text-sm mb-0.5">Địa chỉ</div>
-              <div class="text-gray-600 text-xs whitespace-pre-line leading-relaxed">{store.address}</div>
-            </div>
-          </div>
-          <div class="flex gap-3 p-4 bg-green-50 border border-green-100 rounded-2xl">
-            <div class="bg-green-50 p-2 rounded-xl border border-green-100 shrink-0 h-fit flex items-center justify-center text-green-600">
-              <LucideIcon name="phone" className="w-5 h-5" aria-hidden="true" />
-            </div>
-            <div>
-              <div class="font-bold text-gray-700 text-sm mb-0.5">Điện thoại</div>
-              <div class="text-gray-600 text-xs whitespace-pre-line leading-relaxed">{store.phoneDisplay}</div>
-            </div>
-          </div>
-          <div class="flex gap-3 p-4 bg-blue-50 border border-blue-100 rounded-2xl">
-            <div class="bg-blue-50 p-2 rounded-xl border border-blue-100 shrink-0 h-fit flex items-center justify-center text-blue-600">
-              <LucideIcon name="clock" className="w-5 h-5" aria-hidden="true" />
-            </div>
-            <div>
-              <div class="font-bold text-gray-700 text-sm mb-0.5">Giờ mở cửa</div>
-              <div class="text-gray-600 text-xs whitespace-pre-line leading-relaxed">{store.hours}</div>
-            </div>
-          </div>
-          <div class="flex gap-3 p-4 bg-purple-50 border border-purple-100 rounded-2xl">
-            <div class="bg-purple-50 p-2 rounded-xl border border-purple-100 shrink-0 h-fit flex items-center justify-center text-purple-600">
-              <LucideIcon name="messageCircle" className="w-5 h-5" aria-hidden="true" />
-            </div>
-            <div>
-              <div class="font-bold text-gray-700 text-sm mb-0.5">Zalo</div>
-              <div class="text-gray-600 text-xs whitespace-pre-line leading-relaxed">{store.zaloUrl}</div>
-            </div>
-          </div>
+          ))}
         </div>
 
         <div class="flex gap-3">
@@ -61,28 +76,31 @@ import LucideIcon from "@/components/icons/LucideIcon";
             href={store.mapsPlaceUrl}
             target="_blank"
             rel="noreferrer"
-            class="flex-1 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-4 py-3 rounded-xl transition-colors min-h-[48px]"
+            class="flex-1 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold px-4 py-3 rounded-xl transition-colors min-h-[48px]"
           >
+            <LucideIcon name="mapPin" className="w-4 h-4 shrink-0" aria-hidden="true" />
             Google Maps
           </a>
           <a
             href={store.zaloUrl}
             target="_blank"
             rel="noreferrer"
-            class="flex-1 flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 text-white text-sm font-semibold px-4 py-3 rounded-xl transition-colors min-h-[48px]"
+            class="flex-1 flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 text-white text-sm font-bold px-4 py-3 rounded-xl transition-colors min-h-[48px]"
           >
+            <LucideIcon name="messageCircle" className="w-4 h-4 shrink-0" aria-hidden="true" />
             Chat Zalo
           </a>
         </div>
       </div>
 
-      <div class="lg:col-span-3 space-y-5">
+      <!-- Bản đồ — 7 cột -->
+      <div class="lg:col-span-7">
         <div class="rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
           <div class="bg-blue-600 px-5 py-3 flex items-center gap-2">
             <LucideIcon name="mapPin" className="w-4 h-4 text-white shrink-0" aria-hidden="true" />
             <span class="text-white font-semibold text-sm">{store.brand} – Bản đồ cửa hàng</span>
           </div>
-          <div class="relative w-full aspect-[4/3] sm:aspect-video min-h-[200px]">
+          <div class="relative w-full aspect-[4/3] sm:aspect-video min-h-[240px]">
             <iframe
               title={`${store.brand} location`}
               src={store.mapsUrl}
@@ -97,4 +115,3 @@ import LucideIcon from "@/components/icons/LucideIcon";
     </div>
   </div>
 </section>
-

@@ -8,25 +8,22 @@ const services: {
   time: string;
   light: string;
   iconColor: string;
-  activeBg: string;
   icon: LucideIconName;
 }[] = [
   {
     title: "Sửa chữa & Bảo dưỡng",
-    desc: "Đội thợ lành nghề, sửa chữa nhanh chóng mọi loại xe đạp từ xe đua đến xe điện.",
+    desc: "Đội thợ lành nghề, xử lý nhanh mọi loại xe đạp từ xe đua đến xe điện.",
     time: "30 phút – 2 giờ",
     light: "bg-blue-50",
     iconColor: "text-blue-600",
-    activeBg: "bg-blue-600",
     icon: "wrench",
   },
   {
     title: "Thay linh kiện chính hãng",
-    desc: "Cung cấp và lắp đặt phụ tùng chính hãng, tư vấn đúng nhu cầu.",
+    desc: "Cung cấp và lắp đặt phụ tùng chính hãng — tư vấn đúng nhu cầu.",
     time: "Ngay trong ngày",
     light: "bg-green-50",
     iconColor: "text-green-600",
-    activeBg: "bg-green-600",
     icon: "puzzle",
   },
   {
@@ -35,7 +32,6 @@ const services: {
     time: "1 – 3 giờ",
     light: "bg-orange-50",
     iconColor: "text-orange-500",
-    activeBg: "bg-orange-500",
     icon: "settings",
   },
   {
@@ -44,7 +40,6 @@ const services: {
     time: "Theo yêu cầu",
     light: "bg-purple-50",
     iconColor: "text-purple-600",
-    activeBg: "bg-purple-600",
     icon: "zap",
   },
   {
@@ -53,33 +48,38 @@ const services: {
     time: "Có sẵn tại kho",
     light: "bg-rose-50",
     iconColor: "text-rose-500",
-    activeBg: "bg-rose-500",
     icon: "hardHat",
   },
   {
     title: "Tư vấn chọn xe",
-    desc: "Giúp bạn chọn xe phù hợp nhất với nhu cầu và ngân sách.",
+    desc: "Giúp bạn chọn xe phù hợp với nhu cầu, chiều cao và ngân sách.",
     time: "Hoàn toàn miễn phí",
     light: "bg-teal-50",
     iconColor: "text-teal-600",
-    activeBg: "bg-teal-600",
     icon: "users",
   },
 ];
 ---
 
-<section id="services" class="py-10 sm:py-20 bg-gray-50">
+<section id="services" class="py-14 sm:py-24 bg-section-tint border-t border-blue-100/50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="mb-6 sm:mb-10">
-      <p class="text-blue-600 text-xs font-semibold uppercase tracking-wider mb-1">Dịch vụ</p>
-      <h2 class="text-gray-900" style="font-size:clamp(1.3rem,4vw,2rem);font-weight:800;">
-        Dịch vụ toàn diện, tận tâm
+
+    <!-- Heading canh giữa -->
+    <div class="text-center mb-10 sm:mb-14">
+      <p class="text-blue-600 text-xs font-bold uppercase tracking-widest mb-2">Dịch vụ</p>
+      <h2 class="text-gray-900 mx-auto" style="font-size:clamp(1.5rem,5vw,2.4rem);font-weight:800;line-height:1.2;max-width:30ch;">
+        Dịch vụ toàn diện,{" "}
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500">tận tâm</span>
       </h2>
+      <p class="text-gray-500 text-sm sm:text-base mt-3 max-w-2xl mx-auto leading-relaxed">
+        Từ bảo dưỡng định kỳ đến nâng cấp chuyên sâu — tất cả tại một nơi.
+      </p>
     </div>
 
-    <div class="flex gap-3 overflow-x-auto pb-4 -mx-4 px-4 sm:hidden scrollbar-none mb-6">
+    <!-- Mobile: cuộn ngang -->
+    <div class="flex gap-3 overflow-x-auto pb-4 -mx-4 px-4 sm:hidden scrollbar-none">
       {services.map((s) => (
-        <div class="bg-white rounded-2xl p-4 border border-gray-100 shrink-0 flex flex-col" style="width:72vw;min-width:240px;">
+        <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm shrink-0 flex flex-col" style="width:72vw;min-width:240px;">
           <div class={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${s.light}`}>
             <LucideIcon name={s.icon} className={`w-5 h-5 ${s.iconColor}`} aria-hidden="true" />
           </div>
@@ -93,15 +93,12 @@ const services: {
       ))}
     </div>
 
-    <div class="hidden sm:grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-8">
+    <!-- Desktop: lưới 3 cột -->
+    <div class="hidden sm:grid grid-cols-2 lg:grid-cols-3 gap-5">
       {services.map((s) => (
-        <div class="group bg-white rounded-2xl p-5 sm:p-6 border border-gray-100 hover:border-transparent hover:shadow-xl transition-all duration-300">
-          <div class={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-colors duration-300 ${s.light} group-hover:${s.activeBg}`}>
-            <LucideIcon
-              name={s.icon}
-              className={`w-5 h-5 transition-colors duration-300 ${s.iconColor} group-hover:text-white`}
-              aria-hidden="true"
-            />
+        <div class="group bg-white rounded-2xl p-6 border border-gray-100 hover:border-blue-200 hover:shadow-xl transition-all duration-300">
+          <div class={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${s.light} transition-colors duration-300`}>
+            <LucideIcon name={s.icon} className={`w-5 h-5 ${s.iconColor}`} aria-hidden="true" />
           </div>
           <h3 class="font-bold text-gray-800 mb-2 text-base">{s.title}</h3>
           <p class="text-gray-500 text-sm leading-relaxed mb-4">{s.desc}</p>
@@ -113,23 +110,26 @@ const services: {
       ))}
     </div>
 
-    <a class="relative rounded-2xl overflow-hidden block" href="/#contact">
+    <!-- Banner CTA -->
+    <a class="relative rounded-2xl overflow-hidden block mt-10" href="/#contact">
       <img
-        src="https://images.unsplash.com/photo-1671543445386-36520a3fcca2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+        src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&w=1200&h=400&q=80"
         alt="Xưởng kỹ thuật"
-        class="w-full object-cover h-44 sm:h-64"
+        class="w-full object-cover h-44 sm:h-60"
+        width="1200"
+        height="400"
         loading="lazy"
       />
-      <div class="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-800/75 to-transparent flex items-center">
-        <div class="px-5 sm:px-10 py-6 max-w-lg">
-          <h3 class="text-white font-black mb-2" style="font-size:clamp(1rem,4vw,1.6rem);">
-            Xưởng kỹ thuật hiện đại
+      <div class="absolute inset-0 bg-gradient-to-r from-gray-950/90 via-gray-900/70 to-transparent flex items-center">
+        <div class="px-6 sm:px-10 py-6 max-w-lg">
+          <h3 class="text-white font-black mb-2" style="font-size:clamp(1rem,4vw,1.5rem);">
+            Xưởng kỹ thuật chuyên nghiệp
           </h3>
-          <p class="text-blue-200 text-sm mb-4 hidden sm:block">
-            Trang bị máy móc chuyên dụng, hỗ trợ căn chỉnh và bảo dưỡng nhanh.
+          <p class="text-gray-300 text-sm mb-4 hidden sm:block leading-relaxed">
+            Máy móc chuyên dụng, hỗ trợ căn chỉnh và bảo dưỡng nhanh — không cần hẹn trước.
           </p>
-          <span class="inline-flex items-center gap-2 bg-white text-blue-700 hover:bg-blue-50 px-5 py-3 rounded-xl text-sm font-bold transition-colors min-h-[48px]">
-            Đặt lịch bảo dưỡng <span class="font-black">→</span>
+          <span class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-5 py-3 rounded-xl text-sm font-bold transition-colors min-h-[44px]">
+            Liên hệ ngay <span class="font-black">→</span>
           </span>
         </div>
       </div>

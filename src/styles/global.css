@@ -1,5 +1,6 @@
 @import "tailwindcss";
-@source "../react-app/**/*.{ts,tsx}";
+/* Phải quét Astro + toàn src — nếu chỉ react-app thì class trong .astro (vd. bg-section-*) không sinh CSS */
+@source "../**/*.{astro,ts,tsx,mdx}";
 @import "tw-animate-css";
 @import "./new-design-theme.css";
 
@@ -31,6 +32,12 @@
   --color-orange-900: oklch(26% 0.08 250);
   --color-orange-950: oklch(19% 0.06 250);
 
+  /**
+   * Nền section (new-design) — hue ~250 (blue brand), chroma tăng dần để xen kẽ nhìn rõ.
+   */
+  --color-section-canvas: oklch(99.2% 0.008 250);
+  --color-section-muted: oklch(96.5% 0.028 250);
+  --color-section-tint: oklch(93.5% 0.038 250);
 
 }
 /* CSS */

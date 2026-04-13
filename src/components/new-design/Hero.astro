@@ -1,5 +1,6 @@
 ---
 import { store } from "@/data/store";
+import { showProductsSection } from "@/config/site";
 
 type HeroSlide = {
   image: string;
@@ -13,7 +14,8 @@ type HeroSlide = {
 
 const slides: HeroSlide[] = [
   {
-    image: "/hero/slide-1.svg",
+    image:
+      "https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=1920&h=1080&q=80",
     alt: "Xe đạp thể thao — hero",
     kicker: store.tagline,
     title: store.brand,
@@ -22,8 +24,9 @@ const slides: HeroSlide[] = [
     body: store.description,
   },
   {
-    image: "/hero/slide-2.svg",
-    alt: "Phụ tùng & phụ kiện",
+    image:
+      "https://images.unsplash.com/photo-1571068316344-75bc76f77890?auto=format&fit=crop&w=1920&h=1080&q=80",
+    alt: "Xe đạp tại cửa hàng",
     kicker: "Phụ tùng chính hãng",
     title: "Linh kiện · Phụ kiện",
     highlight: "Đúng chủng loại",
@@ -31,24 +34,15 @@ const slides: HeroSlide[] = [
     body: "Pin, lốp, phanh, truyền động và phụ kiện đi kèm — tư vấn lắp đặt tại chỗ.",
   },
   {
-    image: "/hero/slide-3.svg",
-    alt: "Xe đạp gia đình",
-    kicker: "Xe học sinh & trẻ em",
-    title: "Bền · an toàn",
-    highlight: "Đủ size",
-    suffix: "cho cả nhà",
-    body: "Chọn size phù hợp chiều cao, hỗ trợ căn yên và kiểm tra an toàn trước khi giao.",
-  },
-  {
     image:
-      "https://images.unsplash.com/photo-1758231187893-fab297349f08?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-    alt: "Cửa hàng xe đạp",
-    kicker: "Ghé cửa hàng",
-    title: "Tư vấn trực tiếp",
-    highlight: "Bảo hành & bảo dưỡng",
-    suffix: `— ${store.brand}`,
-    body: "Xem xe, trải nghiệm size và nhận báo giá nhanh qua hotline hoặc Zalo.",
-  },
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1920&h=1080&q=80",
+    alt: "Phụ tùng & sửa chữa xe đạp điện",
+    kicker: "Xe đạp điện & pin",
+    title: "Phụ tùng · Sửa chữa",
+    highlight: "Đúng loại",
+    suffix: `tại ${store.area}`,
+    body: "Pin, mô-tơ, phanh, lốp và linh kiện thay thế — tư vấn và lắp đặt tại cửa hàng.",
+  }
 ];
 ---
 
@@ -82,10 +76,10 @@ const slides: HeroSlide[] = [
               <div class="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-gray-950/80 via-transparent to-transparent"></div>
               <div class="hero-slide__inner relative z-[2] flex h-full min-h-0 w-full items-center justify-start px-5 sm:px-8 max-w-7xl mx-auto py-0">
                 <div class="max-w-xl">
-                  <div class="inline-flex items-center gap-2 bg-blue-600/20 border border-blue-400/30 backdrop-blur-sm rounded-full px-3 py-1 mb-3">
+                  {/* <div class="inline-flex items-center gap-2 bg-blue-600/20 border border-blue-400/30 backdrop-blur-sm rounded-full px-3 py-1 mb-3">
                     <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
                     <span class="text-blue-200 text-xs font-medium">{s.kicker}</span>
-                  </div>
+                  </div> */}
 
                   <h1 class="text-white mb-3 leading-[1.12]" style="font-size:clamp(1.65rem, 6vw, 3rem);font-weight:900;">
                     {s.title}
@@ -104,12 +98,21 @@ const slides: HeroSlide[] = [
                   </p>
 
                   <div class="flex flex-col sm:flex-row gap-2.5 mb-5">
-                    <a
-                      href="/products/"
-                      class="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white px-6 py-3 rounded-xl font-bold text-sm sm:text-base transition-all hover:shadow-lg hover:shadow-blue-600/30 min-h-[48px] w-full sm:w-auto"
-                    >
-                      Xem sản phẩm <span class="font-black">→</span>
-                    </a>
+                    {showProductsSection ? (
+                      <a
+                        href="/products/"
+                        class="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white px-6 py-3 rounded-xl font-bold text-sm sm:text-base transition-all hover:shadow-lg hover:shadow-blue-600/30 min-h-[48px] w-full sm:w-auto"
+                      >
+                        Xem sản phẩm <span class="font-black">→</span>
+                      </a>
+                    ) : (
+                      <a
+                        href="/#contact"
+                        class="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white px-6 py-3 rounded-xl font-bold text-sm sm:text-base transition-all hover:shadow-lg hover:shadow-blue-600/30 min-h-[48px] w-full sm:w-auto"
+                      >
+                        Liên hệ cửa hàng <span class="font-black">→</span>
+                      </a>
+                    )}
                     <a
                       href={`tel:${store.phoneTel}`}
                       class="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 active:bg-white/30 border border-white/30 text-white px-6 py-3 rounded-xl font-bold text-sm sm:text-base transition-all min-h-[48px] w-full sm:w-auto"
@@ -138,17 +141,17 @@ const slides: HeroSlide[] = [
   <div class="relative z-20 bg-blue-700/90 backdrop-blur-sm border-t border-blue-600/50">
     <div class="max-w-7xl mx-auto px-4">
       <div class="grid grid-cols-3 divide-x divide-blue-600/50">
-        <div class="flex flex-col items-center py-2 sm:py-3">
-          <span class="text-white font-black leading-none" style="font-size:clamp(1rem,3.5vw,1.5rem);">20+</span>
-          <span class="text-blue-200 text-[10px] sm:text-xs mt-0.5">Mẫu tham khảo</span>
+        <div class="flex flex-col items-center py-2.5 sm:py-3.5">
+          <span class="text-white font-black leading-none" style="font-size:clamp(1rem,3.5vw,1.5rem);">30+</span>
+          <span class="text-blue-200 text-[10px] sm:text-xs mt-0.5">Năm kinh nghiệm</span>
         </div>
-        <div class="flex flex-col items-center py-2 sm:py-3">
+        <div class="flex flex-col items-center py-2.5 sm:py-3.5">
           <span class="text-white font-black leading-none" style="font-size:clamp(1rem,3.5vw,1.5rem);">07:00–21:00</span>
-          <span class="text-blue-200 text-[10px] sm:text-xs mt-0.5">Mở cửa</span>
+          <span class="text-blue-200 text-[10px] sm:text-xs mt-0.5">Mở cửa hàng ngày</span>
         </div>
-        <div class="flex flex-col items-center py-2 sm:py-3">
+        <div class="flex flex-col items-center py-2.5 sm:py-3.5">
           <span class="text-white font-black leading-none" style="font-size:clamp(1rem,3.5vw,1.5rem);">4.9★</span>
-          <span class="text-blue-200 text-[10px] sm:text-xs mt-0.5">Đánh giá</span>
+          <span class="text-blue-200 text-[10px] sm:text-xs mt-0.5">Đánh giá Google</span>
         </div>
       </div>
     </div>

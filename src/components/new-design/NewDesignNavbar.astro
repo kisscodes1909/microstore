@@ -1,5 +1,6 @@
 ---
 import { store } from "@/data/store";
+import { showProductsSection } from "@/config/site";
 import { CATEGORIES } from "@/react-app/data/products";
 import LucideIcon from "@/components/icons/LucideIcon";
 import logoUrl from "@/images/logo.svg?url";
@@ -51,30 +52,32 @@ import logoUrl from "@/images/logo.svg?url";
           Trang chủ
         </a>
 
-        <div class="relative group">
-          <a
-            href="/products/"
-            class="flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-colors text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-          >
-            Sản phẩm
-          </a>
-          <div class="absolute top-full left-0 w-52 bg-white shadow-xl rounded-xl border border-gray-100 py-2 mt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+        {showProductsSection && (
+          <div class="relative group">
             <a
               href="/products/"
-              class="block px-4 py-2.5 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 font-semibold border-b border-gray-50 mb-1"
+              class="flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-colors text-gray-700 hover:text-blue-600 hover:bg-blue-50"
             >
-              Tất cả sản phẩm
+              Sản phẩm
             </a>
-            {CATEGORIES.map((cat) => (
+            <div class="absolute top-full left-0 w-52 bg-white shadow-xl rounded-xl border border-gray-100 py-2 mt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
               <a
-                href={`/products/?category=${encodeURIComponent(cat.name)}`}
-                class="block px-4 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                href="/products/"
+                class="block px-4 py-2.5 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 font-semibold border-b border-gray-50 mb-1"
               >
-                {cat.name}
+                Tất cả sản phẩm
               </a>
-            ))}
+              {CATEGORIES.map((cat) => (
+                <a
+                  href={`/products/?category=${encodeURIComponent(cat.name)}`}
+                  class="block px-4 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                >
+                  {cat.name}
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         <a href="/#about" class="px-4 py-2 text-gray-700 hover:text-blue-600 text-sm font-medium transition-colors rounded-lg hover:bg-blue-50">
           Giới thiệu
@@ -143,9 +146,11 @@ import logoUrl from "@/images/logo.svg?url";
         <a class="w-full flex items-center gap-3 px-5 py-4 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors text-left min-h-[56px] border-b border-gray-50" href="/#contact">
           <span class="font-semibold">Liên hệ</span>
         </a>
-        <a class="w-full flex items-center gap-3 px-5 py-4 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors text-left min-h-[56px] border-b border-gray-50" href="/products/">
-          <span class="font-semibold">Sản phẩm</span>
-        </a>
+        {showProductsSection && (
+          <a class="w-full flex items-center gap-3 px-5 py-4 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors text-left min-h-[56px] border-b border-gray-50" href="/products/">
+            <span class="font-semibold">Sản phẩm</span>
+          </a>
+        )}
       </div>
 
       <div class="p-4 border-t border-gray-100 flex gap-3">

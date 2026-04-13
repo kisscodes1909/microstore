@@ -2,76 +2,95 @@
 import { store } from "@/data/store";
 import LucideIcon from "@/components/icons/LucideIcon";
 
-const highlights = [
-  "Tư vấn chọn size, lắp ráp và bảo hành rõ ràng",
-  "Có xe thể thao, xe trẻ em và phụ tùng xe điện",
-  "Bảo dưỡng & sửa chữa nhanh tại cửa hàng",
-  "Hỗ trợ báo giá nhanh qua Zalo",
-  "Phù hợp khách lẻ và đơn vị mua số lượng",
-] as const;
+const highlights: { text: string; icon: "check" }[] = [
+  { text: "Hơn 30 năm phục vụ khách hàng tại Huế", icon: "check" },
+  { text: "Tư vấn chọn size, lắp ráp và bảo hành minh bạch", icon: "check" },
+  { text: "Xe thể thao · Xe trẻ em · Phụ tùng xe điện", icon: "check" },
+  { text: "Bảo dưỡng & sửa chữa nhanh ngay tại cửa hàng", icon: "check" },
+  { text: "Hỗ trợ báo giá qua Zalo — phù hợp cả khách lẻ và đơn vị", icon: "check" },
+];
 
 const stats: { value: string; label: string; showStar?: boolean }[] = [
-  { value: "20+", label: "Mẫu tham khảo" },
+  { value: "30+", label: "Năm kinh nghiệm" },
   { value: store.area, label: "Khu vực" },
   { value: store.hours, label: "Mở cửa" },
   { value: "4.9", label: "Đánh giá", showStar: true },
 ];
 ---
 
-<section id="about" class="py-10 sm:py-20 bg-white">
+<section id="about" class="py-14 sm:py-24 bg-section-canvas border-t border-blue-100/50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-      <div class="relative order-1">
-        <div class="rounded-2xl overflow-hidden shadow-xl">
+
+    <!-- Section heading -->
+    <div class="text-center mb-10 sm:mb-14">
+      <p class="text-blue-600 text-xs font-bold uppercase tracking-widest mb-2">Về chúng tôi</p>
+      <h2 class="text-gray-900 mx-auto" style="font-size:clamp(1.5rem,5vw,2.4rem);font-weight:800;line-height:1.2;max-width:36ch;">
+        Hơn 30 năm gắn bó với{" "}
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500">xe đạp & phụ tùng</span>{" "}
+        tại Huế
+      </h2>
+      <p class="text-gray-500 text-sm sm:text-base mt-3 max-w-2xl mx-auto leading-relaxed">
+        Từ một tiệm nhỏ trên đường Nguyễn Tất Thành, {store.brand} đã đồng hành cùng hàng nghìn gia đình — tư vấn tận tâm, dịch vụ chuyên nghiệp.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-[30px] items-center">
+
+      <!-- Ảnh -->
+      <div class="relative order-1 lg:col-span-5">
+        <div class="rounded-2xl overflow-hidden shadow-xl aspect-[4/3]">
           <img
-            src="https://images.unsplash.com/photo-1600327713015-08077f65b388?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
-            alt={`${store.brand} — cửa hàng`}
-            class="w-full h-52 sm:h-72 object-cover"
-            loading="lazy"
-          />
-        </div>
-        <div class="hidden sm:block absolute -bottom-5 right-6 w-36 sm:w-44 h-28 sm:h-36 rounded-xl overflow-hidden shadow-xl border-4 border-white">
-          <img
-            src="https://images.unsplash.com/photo-1671543445386-36520a3fcca2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400"
-            alt="Xưởng kỹ thuật"
+            src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?auto=format&fit=crop&w=800&h=600&q=80"
+            alt={`Bên trong cửa hàng ${store.brand}`}
             class="w-full h-full object-cover"
+            width="800"
+            height="600"
             loading="lazy"
           />
         </div>
-        <div class="absolute top-3 left-3 bg-white rounded-xl px-3 py-2 shadow-lg border border-gray-100 flex items-center gap-2">
+
+        <div class="hidden sm:block absolute -bottom-5 -right-3 w-40 sm:w-48 aspect-[4/3] rounded-xl overflow-hidden shadow-xl border-4 border-white">
+          <img
+            src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&w=400&h=300&q=80"
+            alt="Kỹ thuật viên sửa chữa"
+            class="w-full h-full object-cover"
+            width="400"
+            height="300"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="absolute top-3 left-3 bg-white/95 backdrop-blur rounded-xl px-3 py-2 shadow-lg border border-gray-100 flex items-center gap-2">
           <LucideIcon name="star" className="w-5 h-5 text-amber-400 fill-amber-400 shrink-0" aria-hidden="true" />
           <div>
             <div class="font-black text-gray-800 text-sm leading-none">4.9 / 5</div>
             <div class="text-gray-500 text-[10px] leading-none mt-0.5">Google Reviews</div>
           </div>
         </div>
+
+        <div class="absolute bottom-3 left-3 sm:bottom-auto sm:top-3 sm:left-auto sm:right-3 bg-blue-600 text-white rounded-xl px-3 py-1.5 shadow-lg text-xs font-bold flex items-center gap-1.5">
+          <LucideIcon name="badgeCheck" className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+          30+ năm
+        </div>
       </div>
 
-      <div class="order-2">
-        <p class="text-blue-600 text-xs font-semibold uppercase tracking-wider mb-2">Về chúng tôi</p>
-        <h2 class="text-gray-900 mb-4" style="font-size:clamp(1.4rem,5vw,2.2rem);font-weight:800;line-height:1.2;">
-          Cửa hàng xe đạp{" "}
-          <span class="text-blue-600">{store.brand}</span>
-          <br />
-          tại {store.area}
-        </h2>
-        <p class="text-gray-600 leading-relaxed mb-5 text-sm sm:text-base">
-          {store.description} {store.tagline}
-        </p>
-
-        <ul class="space-y-2.5 mb-6">
+      <!-- Nội dung -->
+      <div class="order-2 lg:col-span-7">
+        <ul class="space-y-3 mb-8">
           {highlights.map((item) => (
-            <li class="flex items-start gap-2.5">
-              <LucideIcon name="check" className="w-4 h-4 text-blue-600 mt-0.5 shrink-0" aria-hidden="true" />
-              <span class="text-gray-700 text-sm">{item}</span>
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 flex items-center justify-center shrink-0 w-5 h-5 rounded-full bg-blue-100 text-blue-600">
+                <LucideIcon name="check" className="w-3.5 h-3.5" aria-hidden="true" />
+              </span>
+              <span class="text-gray-700 text-sm sm:text-[0.9375rem] leading-relaxed">{item.text}</span>
             </li>
           ))}
         </ul>
 
-        <div class="grid grid-cols-4 gap-2 border border-blue-100 rounded-2xl overflow-hidden">
+        <div class="grid grid-cols-4 gap-0 bg-white rounded-2xl overflow-hidden border border-blue-100 shadow-sm">
           {stats.map((s, i) => (
-            <div class={`text-center py-3 sm:py-4 px-1 ${i !== stats.length - 1 ? "border-r border-blue-100" : ""}`}>
-              <div class="text-blue-700 font-black leading-none flex items-center justify-center gap-0.5" style="font-size:clamp(0.9rem,3vw,1.3rem);">
+            <div class={`text-center py-4 sm:py-5 px-2 ${i !== stats.length - 1 ? "border-r border-blue-50" : ""}`}>
+              <div class="text-blue-700 font-black leading-none flex items-center justify-center gap-0.5" style="font-size:clamp(1rem,3vw,1.4rem);">
                 {s.showStar ? (
                   <>
                     {s.value}
@@ -81,12 +100,28 @@ const stats: { value: string; label: string; showStar?: boolean }[] = [
                   s.value
                 )}
               </div>
-              <div class="text-gray-500 text-[9px] sm:text-xs mt-1 leading-tight">{s.label}</div>
+              <div class="text-gray-500 text-[9px] sm:text-xs mt-1.5 leading-tight">{s.label}</div>
             </div>
           ))}
+        </div>
+
+        <div class="mt-6 flex flex-col sm:flex-row gap-3">
+          <a
+            href="/#contact"
+            class="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-xl font-bold text-sm transition-all min-h-[48px]"
+          >
+            Liên hệ cửa hàng <span class="font-black">→</span>
+          </a>
+          <a
+            href={store.zaloUrl}
+            target="_blank"
+            rel="noreferrer"
+            class="flex items-center justify-center gap-2 bg-white hover:bg-gray-50 border border-gray-200 text-gray-700 px-6 py-3 rounded-xl font-bold text-sm transition-all min-h-[48px]"
+          >
+            Chat Zalo
+          </a>
         </div>
       </div>
     </div>
   </div>
 </section>
-
