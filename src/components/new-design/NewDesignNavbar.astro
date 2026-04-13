@@ -1,9 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import { store } from "@/data/store";
-import { showProductsSection } from "@/config/site";
+import { showProductsSection, showServicesSection } from "@/config/site";
 import { CATEGORIES } from "@/react-app/data/products";
 import LucideIcon from "@/components/icons/LucideIcon";
-import logoUrl from "@/images/logo.svg?url";
+import logo from "@/images/logo.svg";
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
@@ -37,12 +38,15 @@ import logoUrl from "@/images/logo.svg?url";
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between py-2.5 md:py-3 min-h-[80px] md:min-h-[84px]">
       <a href="/" class="flex shrink-0 min-w-0">
-        <img
-          src={logoUrl}
+        <Image
+          src={logo}
           alt={store.brand}
-          width="250"
-          height="150"
+          width={250}
+          height={150}
           class="h-[60px] w-auto max-w-[min(320px,72vw)] object-contain object-left"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
         />
       </a>
 
@@ -82,8 +86,13 @@ import logoUrl from "@/images/logo.svg?url";
         <a href="/#about" class="px-4 py-2 text-gray-700 hover:text-blue-600 text-sm font-medium transition-colors rounded-lg hover:bg-blue-50">
           Giới thiệu
         </a>
-        <a href="/#services" class="px-4 py-2 text-gray-700 hover:text-blue-600 text-sm font-medium transition-colors rounded-lg hover:bg-blue-50">
-          Dịch vụ
+        {showServicesSection && (
+          <a href="/#services" class="px-4 py-2 text-gray-700 hover:text-blue-600 text-sm font-medium transition-colors rounded-lg hover:bg-blue-50">
+            Dịch vụ
+          </a>
+        )}
+        <a href="/#categories" class="px-4 py-2 text-gray-700 hover:text-blue-600 text-sm font-medium transition-colors rounded-lg hover:bg-blue-50">
+          Thể loại
         </a>
         <a href="/#contact" class="px-4 py-2 text-gray-700 hover:text-blue-600 text-sm font-medium transition-colors rounded-lg hover:bg-blue-50">
           Liên hệ
@@ -103,6 +112,7 @@ import logoUrl from "@/images/logo.svg?url";
           class="lg:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
           aria-label="Mở menu"
           data-nd-open
+          onclick="document.querySelector('[data-nd-overlay]')?.classList.remove('hidden'); document.body.style.overflow='hidden';"
         >
           <LucideIcon name="menu" className="h-6 w-6 text-gray-700" strokeWidth={2.25} aria-hidden="true" />
         </button>
@@ -111,17 +121,23 @@ import logoUrl from "@/images/logo.svg?url";
   </div>
 
   <!-- Mobile overlay panel (SSG markup + small JS island) -->
-  <div class="fixed inset-0 z-[100] lg:hidden hidden" data-nd-overlay>
+  <div
+    class="fixed inset-0 z-[100] lg:hidden hidden"
+    data-nd-overlay
+    onclick="if(event.target instanceof Element && event.target.closest('[data-nd-close]')){ this.classList.add('hidden'); document.body.style.overflow=''; }"
+  >
     <div class="absolute inset-0 bg-gray-950/60 backdrop-blur-sm" data-nd-close></div>
     <div class="absolute top-0 right-0 bottom-0 w-[85vw] max-w-sm bg-white flex flex-col shadow-2xl">
       <div class="flex items-center justify-between px-5 py-3 border-b border-gray-100">
         <div class="flex items-center min-w-0">
-          <img
-            src={logoUrl}
+          <Image
+            src={logo}
             alt={store.brand}
-            width="250"
-            height="150"
+            width={250}
+            height={150}
             class="h-[60px] w-auto max-w-[min(280px,75vw)] object-contain object-left"
+            loading="eager"
+            decoding="async"
           />
         </div>
         <button
@@ -140,8 +156,13 @@ import logoUrl from "@/images/logo.svg?url";
         <a class="w-full flex items-center gap-3 px-5 py-4 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors text-left min-h-[56px] border-b border-gray-50" href="/#about">
           <span class="font-semibold">Giới thiệu</span>
         </a>
-        <a class="w-full flex items-center gap-3 px-5 py-4 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors text-left min-h-[56px] border-b border-gray-50" href="/#services">
-          <span class="font-semibold">Dịch vụ</span>
+        {showServicesSection && (
+          <a class="w-full flex items-center gap-3 px-5 py-4 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors text-left min-h-[56px] border-b border-gray-50" href="/#services">
+            <span class="font-semibold">Dịch vụ</span>
+          </a>
+        )}
+        <a class="w-full flex items-center gap-3 px-5 py-4 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors text-left min-h-[56px] border-b border-gray-50" href="/#categories">
+          <span class="font-semibold">Thể loại</span>
         </a>
         <a class="w-full flex items-center gap-3 px-5 py-4 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors text-left min-h-[56px] border-b border-gray-50" href="/#contact">
           <span class="font-semibold">Liên hệ</span>
@@ -173,28 +194,5 @@ import logoUrl from "@/images/logo.svg?url";
       </div>
     </div>
   </div>
-
-  <script is:inline>
-    {String.raw`
-      (() => {
-        const overlay = document.querySelector('[data-nd-overlay]');
-        const openBtn = document.querySelector('[data-nd-open]');
-        const closeBtns = document.querySelectorAll('[data-nd-close]');
-        if (!overlay || !openBtn) return;
-
-        const open = () => {
-          overlay.classList.remove('hidden');
-          document.body.style.overflow = 'hidden';
-        };
-        const close = () => {
-          overlay.classList.add('hidden');
-          document.body.style.overflow = '';
-        };
-
-        openBtn.addEventListener('click', open);
-        closeBtns.forEach((b) => b.addEventListener('click', close));
-      })();
-    `}
-  </script>
 </header>
 

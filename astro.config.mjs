@@ -8,5 +8,9 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   site: 'https://lexingtonthemes.com',
+  /** Cho phép tối ưu ảnh remote trong <Image /> (hero Unsplash, v.v.) */
+  image: {
+    domains: ['images.unsplash.com'],
+  },
   integrations: [react(), sitemap()],
 });

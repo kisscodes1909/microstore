@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { store } from "@/data/store";
 import { showProductsSection } from "@/config/site";
 
@@ -19,7 +20,7 @@ const slides: HeroSlide[] = [
     alt: "Xe đạp thể thao — hero",
     kicker: store.tagline,
     title: store.brand,
-    highlight: "Xe đạp & phụ tùng",
+    highlight: "Xe đạp thể thao chính hãng",
     suffix: `tại ${store.area}`,
     body: store.description,
   },
@@ -28,10 +29,10 @@ const slides: HeroSlide[] = [
       "https://images.unsplash.com/photo-1571068316344-75bc76f77890?auto=format&fit=crop&w=1920&h=1080&q=80",
     alt: "Xe đạp tại cửa hàng",
     kicker: "Phụ tùng chính hãng",
-    title: "Linh kiện · Phụ kiện",
+    title: "Phụ kiện xe đạp thể thao",
     highlight: "Đúng chủng loại",
     suffix: `tại ${store.area}`,
-    body: "Pin, lốp, phanh, truyền động và phụ kiện đi kèm — tư vấn lắp đặt tại chỗ.",
+    body: "Pin, lốp, phanh, truyền động và phụ kiện đi kèm.",
   },
   {
     image:
@@ -59,7 +60,7 @@ const slides: HeroSlide[] = [
         <ul class="splide__list h-full">
           {slides.map((s, i) => (
             <li class="splide__slide hero-slide">
-              <img
+              <Image
                 class="hero-slide__img"
                 src={s.image}
                 alt={s.alt}
@@ -68,6 +69,8 @@ const slides: HeroSlide[] = [
                 loading={i === 0 ? "eager" : "lazy"}
                 decoding="async"
                 fetchpriority={i === 0 ? "high" : "auto"}
+                sizes="100vw"
+                format="webp"
               />
               <div
                 class="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-gray-950/80 via-gray-950/60 to-gray-950/80 sm:bg-gradient-to-r sm:from-gray-950 sm:via-gray-900/85 sm:to-gray-900/30"

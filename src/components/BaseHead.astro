@@ -28,6 +28,7 @@ const ogImage = image
     ? image
     : new URL(image, origin).href
   : undefined;
+const gaMeasurementId = import.meta.env.PUBLIC_GA_ID;
 
 /** Đường dẫn tới asset trong `public/` (đúng cả khi có `base` trong astro.config) */
 const faviconHref = `${import.meta.env.BASE_URL}favicon.svg`.replace(/\/{2,}/g, "/");
@@ -61,6 +62,22 @@ const faviconBust = "?v=2";
 
 <meta name="theme-color" content="#1d4ed8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+{
+  gaMeasurementId && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+      <script is:inline>
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${gaMeasurementId}');
+        `}
+      </script>
+    </>
+  )
+}
 
 <script
   type="application/ld+json"

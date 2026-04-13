@@ -58,3 +58,35 @@
     font-family: Montserrat, InterVariable, sans-serif;
   }
 }
+
+@layer components {
+  /**
+   * Thẻ catalog — dùng chung cho danh mục (CategoryShowcase) và sản phẩm (trang /products, ProductCard).
+   * Khung ảnh 16:9, nội dung phía dưới, chiều cao thẻ đồng nhất trong lưới (h-full + flex col).
+   */
+  .catalog-card {
+    @apply bg-white rounded-2xl border border-gray-100 transition-all duration-300 overflow-hidden flex flex-col h-full min-h-0;
+  }
+
+  .catalog-card--interactive {
+    @apply hover:border-blue-200 hover:shadow-xl;
+  }
+
+  .catalog-card__media {
+    @apply relative block overflow-hidden bg-gray-50 shrink-0;
+    aspect-ratio: 16 / 9;
+  }
+
+  .catalog-card__media img {
+    @apply size-full object-cover transition-transform duration-500;
+  }
+
+  .group:hover .catalog-card__media img,
+  .catalog-card--interactive:hover .catalog-card__media img {
+    @apply scale-105;
+  }
+
+  .catalog-card__body {
+    @apply p-3 flex flex-col flex-1 min-h-0 gap-0.5;
+  }
+}

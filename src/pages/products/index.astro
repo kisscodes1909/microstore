@@ -66,9 +66,9 @@ const filtered = category
 
       <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
         {filtered.map((p) => (
-          <div class="bg-white rounded-2xl border border-gray-100 hover:border-blue-200 hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
-            <a href={`/products/${p.id}/`} class="relative overflow-hidden bg-gray-50 block" style="aspect-ratio:1 / 1;">
-              <img src={p.image} alt={p.name} class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+          <div class="group catalog-card catalog-card--interactive">
+            <a href={`/products/${p.id}/`} class="catalog-card__media block">
+              <img src={p.image} alt={p.name} loading="lazy" decoding="async" />
               {p.badge ? (
                 <span class={`absolute top-2 left-2 ${p.badgeColor} text-white text-[9px] font-bold px-2 py-0.5 rounded-md`}>
                   {p.badge}
@@ -81,7 +81,7 @@ const filtered = category
               ) : null}
             </a>
 
-            <div class="p-3 flex flex-col flex-1">
+            <div class="catalog-card__body">
               <div class="text-[10px] text-blue-600 font-semibold uppercase mb-0.5 truncate">{p.brand}</div>
               <a href={`/products/${p.id}/`} class="font-bold text-gray-800 mb-1.5 line-clamp-2 leading-snug flex-1 hover:text-blue-600 transition-colors" style="font-size:clamp(0.76rem,2.5vw,0.88rem);">
                 {p.name}

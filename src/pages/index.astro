@@ -3,21 +3,22 @@ import NewDesignLayout from "@/layouts/NewDesignLayout.astro";
 import Hero from "@/components/new-design/Hero.astro";
 import TrustBar from "@/components/new-design/TrustBar.astro";
 import CategoryShowcase from "@/components/new-design/CategoryShowcase.astro";
-import PromoBanner from "@/components/new-design/PromoBanner.astro";
 import About from "@/components/new-design/About.astro";
-import Services from "@/components/new-design/Services.astro";
-import Brands from "@/components/new-design/Brands.astro";
+// import Services from "@/components/new-design/Services.astro";
+// import PromoBanner from "@/components/new-design/PromoBanner.astro";
+// import Brands from "@/components/new-design/Brands.astro";
 import Testimonials from "@/components/new-design/Testimonials.astro";
 import ContactMap from "@/components/new-design/ContactMap.astro";
 ---
 
 <NewDesignLayout>
-  <!-- Luồng trang: Ấn tượng → Niềm tin → Giới thiệu → Dịch vụ → Đánh giá → Liên hệ -->
+  <!-- Luồng trang: Ấn tượng → Niềm tin → Giới thiệu → Thể loại mặt hàng → Đánh giá → Liên hệ -->
   <Hero />
   <TrustBar />
   <About />
-  <Services />
+  <CategoryShowcase />
+  <!-- <Services /> -->
   <Testimonials />
   <ContactMap />
-  {/* <CategoryShowcase /> <PromoBanner /> <Brands /> — bật khi cần */}
+  {/* <PromoBanner /> <Brands /> — bật khi cần */}
 </NewDesignLayout>

@@ -1,6 +1,6 @@
 ---
 import { store } from "@/data/store";
-import { showProductsSection } from "@/config/site";
+import { showProductsSection, showServicesSection } from "@/config/site";
 import LucideIcon from "@/components/icons/LucideIcon";
 import logoUrl from "@/images/logo.svg?url";
 ---
@@ -69,7 +69,10 @@ import logoUrl from "@/images/logo.svg?url";
             {showProductsSection && (
               <li><a href="/products/" class="text-gray-500 hover:text-blue-400 text-sm transition-colors py-1 block">Sản phẩm</a></li>
             )}
-            <li><a href="/#services" class="text-gray-500 hover:text-blue-400 text-sm transition-colors py-1 block">Dịch vụ</a></li>
+            <li><a href="/#categories" class="text-gray-500 hover:text-blue-400 text-sm transition-colors py-1 block">Thể loại mặt hàng</a></li>
+            {showServicesSection && (
+              <li><a href="/#services" class="text-gray-500 hover:text-blue-400 text-sm transition-colors py-1 block">Dịch vụ</a></li>
+            )}
             <li><a href="/#contact" class="text-gray-500 hover:text-blue-400 text-sm transition-colors py-1 block">Liên hệ</a></li>
           </ul>
         </div>
@@ -82,6 +85,7 @@ import logoUrl from "@/images/logo.svg?url";
             <li class="text-gray-500 text-sm py-1">Phụ tùng xe điện</li>
             <li class="text-gray-500 text-sm py-1">Xe đạp thể thao</li>
             <li class="text-gray-500 text-sm py-1">Xe đạp học sinh</li>
+            <li class="text-gray-500 text-sm py-1">Xe đạp nữ</li>
             <li class="text-gray-500 text-sm py-1">Xe đạp trẻ em</li>
           </ul>
         </div>

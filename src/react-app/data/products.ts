@@ -2,6 +2,7 @@ export type Category =
   | "Xe đạp thể thao"
   | "Xe đạp địa hình"
   | "Xe đạp trẻ em"
+  | "Xe đạp nữ"
   | "Phụ tùng xe đạp"
   | "Phụ tùng xe điện";
 
@@ -33,7 +34,9 @@ export const CATEGORIES: { id: string; name: Category; slug: string; image: stri
     id: "xe-dap-the-thao",
     name: "Xe đạp thể thao",
     slug: "xe-dap-the-thao",
-    image: "https://images.unsplash.com/photo-1598252166987-089ce5fb3250?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb2FkJTIwcmFjaW5nJTIwYmlrZSUyMGNhcmJvbiUyMGxpZ2h0d2VpZ2h0JTIwc3BvcnR8ZW58MXx8fHwxNzc1MjY1NDQzfDA&ixlib=rb-4.1.0&q=80&w=800",
+    /** Ảnh gợi ý (Unsplash): xe road / đua, khung gọn, nền sáng — phù hợp thẻ vuông catalog */
+    image:
+      "/images/califa-xe-the-thao.webp",
     desc: "Xe đua đường trường & BMX cao cấp",
     count: 48,
     color: "blue",
@@ -43,7 +46,9 @@ export const CATEGORIES: { id: string; name: Category; slug: string; image: stri
     id: "xe-dap-dia-hinh",
     name: "Xe đạp địa hình",
     slug: "xe-dap-dia-hinh",
-    image: "https://images.unsplash.com/photo-1761028671568-95069a3e96ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3VudGFpbiUyMGJpa2UlMjBvZmZyb2FkJTIwZGlydCUyMHRyYWlsJTIwcnVnZ2VkfGVufDF8fHx8MTc3NTI2NTQ0M3ww&ixlib=rb-4.1.0&q=80&w=800",
+    /** Ảnh gợi ý: MTB / trail, gai lốp — tông xanh lá */
+    image:
+      "/images/califa-xe-dia-hinh.webp",
     desc: "MTB & Offroad chinh phục mọi địa hình",
     count: 35,
     color: "green",
@@ -53,32 +58,50 @@ export const CATEGORIES: { id: string; name: Category; slug: string; image: stri
     id: "xe-dap-tre-em",
     name: "Xe đạp trẻ em",
     slug: "xe-dap-tre-em",
-    image: "https://images.unsplash.com/photo-1746010531718-36c6c5b333ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZHJlbiUyMGtpZHMlMjBjb2xvcmZ1bCUyMHNtYWxsJTIwYmljeWNsZSUyMHJpZGV8ZW58MXx8fHwxNzc1MjY1NDQzfDA&ixlib=rb-4.1.0&q=80&w=800",
+    /** Ảnh gợi ý: xe nhỏ màu sắc, cảm giác vui & an toàn */
+    image:
+      "/images/califa-xe-dap-tre-em.webp",
     desc: "An toàn, vui vẻ cho bé từ 2–14 tuổi",
     count: 30,
     color: "pink",
     gradient: "from-rose-900/85 to-rose-700/20",
   },
   {
-    id: "phu-tung-xe-dap",
-    name: "Phụ tùng xe đạp",
-    slug: "phu-tung-xe-dap",
-    image: "https://images.unsplash.com/photo-1672138127452-3f538394f431?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiaWN5Y2xlJTIwcGFydHMlMjBjb21wb25lbnRzJTIwc2hpbWFubyUyMGRyaXZldHJhaW58ZW58MXx8fHwxNzc1MjY1NDQyfDA&ixlib=rb-4.1.0&q=80&w=800",
-    desc: "Linh kiện chính hãng Shimano, SRAM, Campagnolo",
-    count: 120,
-    color: "orange",
-    gradient: "from-orange-900/85 to-orange-700/20",
+    id: "xe-dap-nu",
+    name: "Xe đạp nữ",
+    slug: "xe-dap-nu",
+    /** Ảnh gợi ý: xe đô thị / city — có thể thay bằng ảnh thật tại cửa hàng */
+    image:
+      "/images/califa-xe-nữ.webp",
+    desc: "Khung phù hợp dáng người nữ, yên êm, phong cách đô thị & fitness",
+    count: 2,
+    color: "rose",
+    gradient: "from-rose-800/85 to-pink-600/20",
   },
-  {
-    id: "phu-tung-xe-dien",
-    name: "Phụ tùng xe điện",
-    slug: "phu-tung-xe-dien",
-    image: "https://images.unsplash.com/photo-1763041821558-13fb6264be3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVjdHJpYyUyMGJpa2UlMjBlYmlrZSUyMGJhdHRlcnklMjBtb3RvciUyMHBhcnRzfGVufDF8fHx8MTc3NTI2NTQ0Mnww&ixlib=rb-4.1.0&q=80&w=800",
-    desc: "Pin, động cơ, bộ điều khiển e-bike chính hãng",
-    count: 65,
-    color: "purple",
-    gradient: "from-purple-900/85 to-purple-700/20",
-  },
+  // {
+  //   id: "phu-tung-xe-dap",
+  //   name: "Phụ tùng xe đạp",
+  //   slug: "phu-tung-xe-dap",
+  //   /** Ảnh gợi ý: groupset / phanh / líp — góc “workshop” */
+  //   image:
+  //     "https://images.unsplash.com/photo-1672138127452-3f538394f431?auto=format&fit=crop&w=800&q=80",
+  //   desc: "Linh kiện chính hãng Shimano, SRAM, Campagnolo",
+  //   count: 120,
+  //   color: "orange",
+  //   gradient: "from-orange-900/85 to-orange-700/20",
+  // },
+  // {
+  //   id: "phu-tung-xe-dien",
+  //   name: "Phụ tùng xe điện",
+  //   slug: "phu-tung-xe-dien",
+  //   /** Ảnh gợi ý: pin / khung e-bike / scooter điện — tông tím/xám công nghệ */
+  //   image:
+  //     "https://images.unsplash.com/photo-1633446256076-7e02748c4758?auto=format&fit=crop&w=800&q=80",
+  //   desc: "Pin, động cơ, bộ điều khiển e-bike chính hãng",
+  //   count: 65,
+  //   color: "purple",
+  //   gradient: "from-purple-900/85 to-purple-700/20",
+  // },
 ];
 
 export const BRANDS: Brand[] = ["Giant", "Trek", "Specialized", "Merida", "Scott", "Shimano", "Bosch", "Xiaomi", "VeloShop"];
@@ -95,6 +118,8 @@ const IMG = {
   parts2: "https://images.unsplash.com/photo-1716877558809-e7b8ffc6b0ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiaWtlJTIwaGVsbWV0JTIwZ2xvdmVzJTIwY3ljbGluZyUyMGFjY2Vzc29yaWVzJTIwZ2VhcnxlbnwxfHx8fDE3NzUyNjU0NDZ8MA&ixlib=rb-4.1.0&q=80&w=600",
   eparts1: "https://images.unsplash.com/photo-1763041821558-13fb6264be3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVjdHJpYyUyMGJpa2UlMjBlYmlrZSUyMGJhdHRlcnklMjBtb3RvciUyMHBhcnRzfGVufDF8fHx8MTc3NTI2NTQ0Mnww&ixlib=rb-4.1.0&q=80&w=600",
   eparts2: "https://images.unsplash.com/photo-1633446256076-7e02748c4758?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVjdHJpYyUyMHNjb290ZXIlMjBlYmlrZSUyMHVyYmFuJTIwY29tbXV0ZSUyMGNpdHl8ZW58MXx8fHwxNzc1MjY1NDQ3fDA&ixlib=rb-4.1.0&q=80&w=600",
+  womens1: "https://images.unsplash.com/photo-1596560548464-f010549b84d7?auto=format&fit=crop&w=800&q=80",
+  womens2: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=800&q=80",
 };
 
 export const ALL_PRODUCTS: Product[] = [
@@ -380,6 +405,56 @@ export const ALL_PRODUCTS: Product[] = [
       { label: "Bánh xe", value: "12 inch" },
       { label: "Loại", value: "Xe thăng bằng" },
       { label: "Trọng lượng", value: "3.2 kg" },
+    ],
+    inStock: true,
+  },
+
+  // --- Xe đạp nữ ---
+  {
+    id: 21,
+    sku: "WOMEN-001",
+    name: "Liv Alight 3",
+    category: "Xe đạp nữ",
+    brand: "Giant",
+    price: 11200000,
+    oldPrice: 12400000,
+    rating: 4.8,
+    reviews: 56,
+    badge: "Mới",
+    badgeColor: "bg-rose-500",
+    installment: true,
+    image: IMG.womens1,
+    images: [IMG.womens1, IMG.womens2],
+    desc: "Xe fitness đô thị dành cho nữ: khung nhôm ALUXX nhẹ, tay lái rộng, phanh đĩa cơ an toàn. Lý tưởng đi làm, đạp tập nhẹ.",
+    specs: [
+      { label: "Khung", value: "ALUXX-Grade Aluminum" },
+      { label: "Truyền động", value: "Shimano Altus 2×8" },
+      { label: "Bánh xe", value: '700C × 32C"' },
+      { label: "Size khung", value: "XS / S / M" },
+      { label: "Trọng lượng", value: "10.8 kg" },
+    ],
+    inStock: true,
+  },
+  {
+    id: 22,
+    sku: "WOMEN-002",
+    name: "Trek FX 2 Disc Women's",
+    category: "Xe đạp nữ",
+    brand: "Trek",
+    price: 13800000,
+    rating: 4.9,
+    reviews: 41,
+    badge: "Bán chạy",
+    badgeColor: "bg-pink-500",
+    installment: true,
+    image: IMG.womens2,
+    desc: "Xe hybrid đô thị: khung Alpha Gold Aluminum, phanh đĩa thủy lực, lốp Bontrager H2 Hard-Case Lite chống đinh.",
+    specs: [
+      { label: "Khung", value: "Alpha Gold Aluminum" },
+      { label: "Truyền động", value: "Shimano Altus 2×9" },
+      { label: "Phanh", value: "Đĩa thủy lực" },
+      { label: "Size khung", value: "S / M" },
+      { label: "Trọng lượng", value: "11.4 kg" },
     ],
     inStock: true,
   },

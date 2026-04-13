@@ -93,20 +93,12 @@ export function ProductCard({ product, onView, viewMode = "grid" }: Props) {
     );
   }
 
-  // GRID VIEW
+  // GRID VIEW — cùng hệ `.catalog-card` với danh mục (global.css)
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 hover:border-blue-200 hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+    <div className="group catalog-card catalog-card--interactive">
       {/* Image */}
-      <div
-        className="relative overflow-hidden bg-gray-50 cursor-pointer"
-        style={{ aspectRatio: "1 / 1" }}
-        onClick={goToDetail}
-      >
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-        />
+      <div className="catalog-card__media cursor-pointer" onClick={goToDetail}>
+        <img src={product.image} alt={product.name} />
         {/* Badges */}
         {product.badge && (
           <span className={`absolute top-2 left-2 ${product.badgeColor} text-white text-[9px] font-bold px-2 py-0.5 rounded-md flex items-center gap-0.5`}>
@@ -131,7 +123,7 @@ export function ProductCard({ product, onView, viewMode = "grid" }: Props) {
       </div>
 
       {/* Content */}
-      <div className="p-3 flex flex-col flex-1">
+      <div className="catalog-card__body">
         <div className="text-[10px] text-blue-600 font-semibold uppercase mb-0.5 truncate">{product.brand}</div>
         <h3
           className="font-bold text-gray-800 mb-1.5 line-clamp-2 leading-snug flex-1 cursor-pointer hover:text-blue-600 transition-colors"
